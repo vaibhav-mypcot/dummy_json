@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+
+const Color kColorPrimary = Color(0xff5736CD);
+const Color kColorSecondary = Color(0xffCD5036);
+const Color kColorBlackOff = Color(0xff10131B);
+const Color kColorWhite = Color(0xffF9F7FF);
+const Color kColorYellow = Color(0xffFFD579);
+const Color kColorSubmitted = Color(0xff0690F4);
+const Color kColorMissed = Color(0xffFF243E);
+const Color kColorDarkYellow = Color(0xffFFB624);
+const Color kColorGray = Color(0xff4A4C54);
+const Color kColorCardBackg = Color(0xff1B1E27);
+const Color kColorGreen = Color(0xff12AE47);
+const Color kColorLightGreen = Color(0xff3CE800);
+const Color kColorBoxShadow1 = Color(0xff262832);
+const Color kColorBoxShadow2 = Color(0xff272A31);
+const Color kBackgroundColor = Color(0xff10131B);
+const Color kSubTextColor = Color(0xffBEBEC6);
+const Color kDividerColor = Color(0xff272A32);
+const Color kColorRed = Color(0xffDA2F43);
+const Color kColorYellowRewardFont = Color(0xFFFFCB49);
+const Color kColorTransparent = Colors.transparent;
+const Color kColorFontWhite = Color(0xFFF9F7FF);
+const Color kColorCardBg = Color(0xFF1C1E26);
+const Color kColorDetailsDivider = Color(0xFF272931);
+const Color kColorDetailsBoxBg = Color(0xFF1C1E26);
+const Color kColorQuizResult = Color(0xff452190);
+Color kColorFontWhiteOpacity75 = const Color(0xFFF9F7FF).withOpacity(0.75);

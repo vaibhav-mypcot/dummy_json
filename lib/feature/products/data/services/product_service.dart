@@ -10,7 +10,7 @@ class ProductServices {
           Uri.parse('https://dummyjson.com/products?skip=0&limit=$fetchLimit'));
       if (response.statusCode == 200) {
         final String responseBody = response.body;
-        final Map<String, dynamic> responseData = json.decode(responseBody);
+        final Map<String, dynamic> responseData = jsonDecode(responseBody);
         // print(responseData);
         return ProductModel.fromMap(responseData);
       } else {

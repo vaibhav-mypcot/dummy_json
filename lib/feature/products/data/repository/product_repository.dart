@@ -7,7 +7,6 @@ class ProductRepository {
 
   Future<ProductModel> fetchProductData(int limit) async {
     final products = await productServices.getProductData(limit);
-    print(products);
     return products;
   }
 }

@@ -10,32 +10,36 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: double.infinity,
-      child: Column(
-        children: [
-          Image.network(
-            item.images[0],
-            fit: BoxFit.cover,
-            // height: 50.h,
-            // width: 80.w,
-          ),
-          Text(
-            item.title,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 14.sp,
+    return Card(
+      elevation: 0.4,
+      child: SizedBox(
+        height: 60,
+        width: double.infinity,
+        child: Column(
+          children: [
+            Image.network(
+              item.images[0],
+              fit: BoxFit.cover,
+              height: 50.h,
+              width: 80.w,
             ),
-          ),
-          Text(
-            '\$ ${item.price} ',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 14.sp,
+            Text(
+              item.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14.sp,
+              ),
             ),
-          ),
-        ],
+            Text(
+              '\$ ${item.price} ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14.sp,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

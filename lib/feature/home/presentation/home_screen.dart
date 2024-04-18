@@ -1,10 +1,25 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:dummy_json/core/routes/app_routes.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+@RoutePage()
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  List title = ['Product', 'Cart', 'Users', 'Posts', 'Image', 'Recipes'];
+  final List title = [
+    'Product',
+    'Address',
+    'Cart',
+    'Users',
+    'Posts',
+    'Image',
+    'Recipes'
+  ];
+  final List<dynamic> routes = [
+    const ProductListScreenRoute(),
+    const AddressScreenRoute(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +39,13 @@ class HomeScreen extends StatelessWidget {
             itemCount: title.length,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  if (index < routes.length) {
+                    AutoRouter.of(context).push(routes[index]);
+                  }
+                },
                 child: Card(
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(

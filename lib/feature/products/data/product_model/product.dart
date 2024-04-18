@@ -13,7 +13,7 @@ class Product extends Equatable {
   final String? brand;
   final String? category;
   final String? thumbnail;
-  final List<String>? images;
+  final List<dynamic>? images;
 
   const Product({
     this.id,
@@ -40,7 +40,7 @@ class Product extends Equatable {
         brand: data['brand'] as String?,
         category: data['category'] as String?,
         thumbnail: data['thumbnail'] as String?,
-        images: data['images'] as List<String>?,
+        images: data['images'] as List<dynamic>?,
       );
 
   Map<String, dynamic> toMap() => {
