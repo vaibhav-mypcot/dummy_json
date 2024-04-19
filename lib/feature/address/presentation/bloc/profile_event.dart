@@ -12,3 +12,8 @@ class UserAddressUpdateEvent extends ProfileEvent {
     required this.pincode,
   });
 }
+
+class FetchPincodeEvent extends ProfileEvent {
+  final String pincode;
+  FetchPincodeEvent({required this.pincode});
+}

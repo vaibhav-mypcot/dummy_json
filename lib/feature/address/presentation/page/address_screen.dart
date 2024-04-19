@@ -60,7 +60,6 @@ class _AddressCardState extends State<AddressCard> {
     context.read<ProfileBloc>().add(FetchProfileDataEvent());
   }
 
-  bool _isDataFetched = false;
   var updatedData;
 
   // @override
@@ -123,14 +122,14 @@ class _AddressCardState extends State<AddressCard> {
               ),
               SizedBox(height: 16.h),
               Text(
-                state.result.address.toString(),
+                state.result!.address.toString(),
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: kSubTextColor,
                 ),
               ),
               Text(
-                '${state.result.cityName.toString()} \n ${state.result.stateName.toString()}',
+                '${state.result!.cityName.toString()} \n ${state.result!.stateName.toString()}',
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: kSubTextColor,

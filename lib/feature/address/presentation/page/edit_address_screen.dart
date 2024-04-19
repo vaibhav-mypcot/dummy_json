@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:dummy_json/core/common/customTextField.dart';
 import 'package:dummy_json/core/common/custom_long_btn.dart';
@@ -29,18 +31,26 @@ class _EditAddressScreenState extends State<EditAddressScreen>
   final cityController = TextEditingController();
   final stateController = TextEditingController();
 
+  Timer? _debounce;
+
   @override
   void initState() {
     super.initState();
     context.read<ProfileBloc>().add(FetchProfileDataEvent());
-    if (BlocProvider.of<ProfileBloc>(context).state is ProfileLoadedState) {
-      final state =
-          BlocProvider.of<ProfileBloc>(context).state as ProfileLoadedState;
-      nameController.text = state.result.name.toString();
-      addressController.text = state.result.address.toString();
-      pincodeController.text = state.result.pinCode.toString();
-    }
   }
+
+  // void _onPincodeChanged() {
+  //   if (_debounce?.isActive ?? false) _debounce!.cancel();
+  //   _debounce = Timer(const Duration(milliseconds: 1000), () {
+  //     if (pincodeController.text.length == 6) {
+  //       final state = BlocProvider.of<ProfileBloc>(context).state;
+  //       if (state is PincodeUpdateState) {
+  //         stateController.text = state.postOffice.first.state!;
+  //         cityController.text = state.postOffice.first.district!;
+  //       }
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,107 +74,200 @@ class _EditAddressScreenState extends State<EditAddressScreen>
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is ProfileLoadedState) {
-                    return Column(
-                      children: [
-                        ListView(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  top: 36.h, left: 24.w, right: 24.w),
-                              child: Form(
-                                key: editAddressFormKey,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    //-- Name Field
-                                    Text(
-                                      'Name',
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kColorWhite,
-                                      ),
+                    nameController.text = state.result!.name.toString();
+                    addressController.text = state.result!.address.toString();
+                    pincodeController.text = state.result!.pinCode.toString();
+                    stateController.text = state.result!.stateName!;
+                    cityController.text = state.result!.cityName!;
+                  } else if (state is PincodeUpdateState) {
+                    stateController.text = state.postOffice.first.state!;
+                    cityController.text = state.postOffice.first.district!;
+                  }
+                  return Column(
+                    children: [
+                      ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: 36.h, left: 24.w, right: 24.w),
+                            child: Form(
+                              key: editAddressFormKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //-- Name Field
+                                  Text(
+                                    'Name',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kColorWhite,
                                     ),
-                                    SizedBox(height: 8.h),
-                                    CustomTextfieldWidget(
-                                      validator: validatedName,
-                                      errorStyle: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      controller: nameController,
-                                      // initialValue:
-                                      //     headValue() ? "Guest" : "",
-                                      hintText: 'Enter Name',
-                                      hintStyle: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kSubTextColor,
-                                      ),
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kSubTextColor,
-                                      ),
-                                      textInputType: TextInputType.name,
-                                      maxLines: 1,
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  CustomTextfieldWidget(
+                                    validator: validatedName,
+                                    errorStyle: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    SizedBox(height: 24.h),
-                                    //-- Address Field
-                                    Text(
-                                      'Address',
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kColorWhite,
-                                      ),
+                                    controller: nameController,
+                                    // initialValue:
+                                    //     headValue() ? "Guest" : "",
+                                    hintText: 'Enter Name',
+                                    hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kSubTextColor,
                                     ),
-                                    SizedBox(height: 8.h),
-                                    CustomTextfieldWidget(
-                                      validator: validatedAddress,
-                                      errorStyle: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      maxLines: null,
-                                      // initialValue: headValue()
-                                      //     ? '201, B11, Gardenia Phase 3, Yari Road Andheri, Near 7-11 International school'
-                                      //     : "",
-                                      hintText: 'Enter your address',
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kSubTextColor,
-                                      ),
-                                      controller: addressController,
-                                      hintStyle: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kSubTextColor,
-                                      ),
-                                      textInputType: TextInputType.multiline,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kSubTextColor,
                                     ),
-                                    SizedBox(height: 24.h),
-                                    //-- Address Field
-                                    Text(
-                                      'Pincode',
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: kColorWhite,
-                                      ),
+                                    textInputType: TextInputType.name,
+                                    maxLines: 1,
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  //-- Address Field
+                                  Text(
+                                    'Address',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kColorWhite,
                                     ),
-                                    SizedBox(height: 8.h),
-                                    CustomTextfieldWidget(
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  CustomTextfieldWidget(
+                                    validator: validatedAddress,
+                                    errorStyle: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    maxLines: null,
+                                    // initialValue: headValue()
+                                    //     ? '201, B11, Gardenia Phase 3, Yari Road Andheri, Near 7-11 International school'
+                                    //     : "",
+                                    hintText: 'Enter your address',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kSubTextColor,
+                                    ),
+                                    controller: addressController,
+                                    hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kSubTextColor,
+                                    ),
+                                    textInputType: TextInputType.multiline,
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  //-- Address Field
+                                  Text(
+                                    'Pincode',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kColorWhite,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  CustomTextfieldWidget(
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(6),
+                                    ],
+                                    controller: pincodeController,
+                                    validator: validatedPincode,
+                                    errorStyle: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    maxLines: null,
+                                    // initialValue:
+                                    //     headValue() ? '400055' : "",
+                                    hintText: 'Enter your pincode',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kSubTextColor,
+                                    ),
+                                    hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kSubTextColor,
+                                    ),
+                                    textInputType: TextInputType.number,
+                                    onChanged: (String value) {
+                                      if (value.isEmpty) {
+                                        stateController.text = '';
+                                        cityController.text = '';
+                                      }
+                                      if (value.length == 6) {
+                                        context.read<ProfileBloc>().add(
+                                            FetchPincodeEvent(
+                                                pincode:
+                                                    pincodeController.text));
+                                        // if (BlocProvider.of<ProfileBloc>(
+                                        //         context)
+                                        //     .state is PincodeUpdateState) {
+                                        //   final state =
+                                        //       BlocProvider.of<ProfileBloc>(
+                                        //               context)
+                                        //           .state as PincodeUpdateState;
+                                        //   stateController.text =
+                                        //       state.postOffice.first.state!;
+                                        //   cityController.text =
+                                        //       state.postOffice.first.district!;
+                                        // }
+                                      } else {
+                                        print("Pincode is not complete");
+                                        stateController.text = '';
+                                        cityController.text = '';
+                                      }
+                                    },
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  //-- State Dropdown
+                                  Text(
+                                    'State',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kColorWhite,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  // DropDown(
+                                  //   label: "Select State",
+                                  //   dropDownList: editAddressController.stateList.value,
+                                  // ),
+                                  Container(
+                                    // height: double.infinity,
+                                    width: double.infinity,
+                                    child: CustomTextfieldWidget(
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(6),
                                       ],
-                                      controller: pincodeController,
-                                      validator: validatedPincode,
+                                      controller: stateController,
                                       errorStyle: TextStyle(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w400,
                                       ),
+                                      validator: validatedState,
+                                      suffixIcon: stateController
+                                              .text.isNotEmpty
+                                          ? null
+                                          : Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 10.w),
+                                              // width: 2.w,
+                                              // height: 2.w,
+                                              child: const Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                        color: kColorPrimary),
+                                              ),
+                                            ),
+                                      enabled: false,
                                       maxLines: null,
                                       // initialValue:
                                       //     headValue() ? '400055' : "",
-                                      hintText: 'Enter your pincode',
+                                      hintText: 'State Name',
                                       style: TextStyle(
                                         fontSize: 14.sp,
                                         color: kSubTextColor,
@@ -175,131 +278,74 @@ class _EditAddressScreenState extends State<EditAddressScreen>
                                       ),
                                       textInputType: TextInputType.number,
                                     ),
-                                    SizedBox(height: 24.h),
-                                    //-- State Dropdown
-                                    Text(
-                                      'State',
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  // City Dropdown
+                                  Text(
+                                    'City',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: kColorWhite,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom +
+                                            50.h),
+                                    width: double.infinity,
+                                    child: CustomTextfieldWidget(
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(6),
+                                      ],
+                                      validator: validatedCity,
+                                      controller: cityController,
+                                      enabled: false,
+                                      suffixIcon: cityController.text.isNotEmpty
+                                          ? null
+                                          : Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 10.w),
+                                              // width: 2.w,
+                                              // height: 2.w,
+                                              child: const Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                        color: kColorPrimary),
+                                              ),
+                                            ),
+                                      // validator: validatedPincode,
+                                      errorStyle: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      maxLines: null,
+                                      // initialValue:
+                                      //     headValue() ? '400055' : "",
+                                      hintText: 'City Name',
                                       style: TextStyle(
                                         fontSize: 14.sp,
-                                        color: kColorWhite,
+                                        color: kSubTextColor,
                                       ),
-                                    ),
-                                    SizedBox(height: 8.h),
-                                    // DropDown(
-                                    //   label: "Select State",
-                                    //   dropDownList: editAddressController.stateList.value,
-                                    // ),
-                                    Container(
-                                      // height: double.infinity,
-                                      width: double.infinity,
-                                      child: CustomTextfieldWidget(
-                                        inputFormatters: [
-                                          LengthLimitingTextInputFormatter(6),
-                                        ],
-                                        // controller: editAddressController
-                                        //     .stateController.value,
-                                        errorStyle: TextStyle(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        // validator: validatedState,
-                                        suffixIcon: Container(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          // width: 2.w,
-                                          // height: 2.w,
-                                          child: const Center(
-                                            child: CircularProgressIndicator(
-                                                color: kColorPrimary),
-                                          ),
-                                        ),
-                                        enabled: false,
-                                        maxLines: null,
-                                        // initialValue:
-                                        //     headValue() ? '400055' : "",
-                                        hintText: 'State Name',
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: kSubTextColor,
-                                        ),
-                                        hintStyle: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: kSubTextColor,
-                                        ),
-                                        textInputType: TextInputType.number,
-                                      ),
-                                    ),
-                                    SizedBox(height: 24.h),
-                                    // City Dropdown
-                                    Text(
-                                      'City',
-                                      style: TextStyle(
+                                      hintStyle: TextStyle(
                                         fontSize: 14.sp,
-                                        color: kColorWhite,
+                                        color: kSubTextColor,
                                       ),
+                                      textInputType: TextInputType.number,
                                     ),
-                                    SizedBox(height: 8.h),
-                                    // DropDown(
-                                    //   label: "Select City",
-                                    //   dropDownList: cityList,
-                                    // ),
-                                    Container(
-                                      // height: double.infinity,
-                                      padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom +
-                                              50.h),
-                                      width: double.infinity,
-                                      child: CustomTextfieldWidget(
-                                        inputFormatters: [
-                                          LengthLimitingTextInputFormatter(6),
-                                        ],
-                                        // validator: validatedCity,
-                                        // controller: editAddressController
-                                        //     .cityController.value,
-                                        enabled: false,
-                                        suffixIcon: Container(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          // width: 2.w,
-                                          // height: 2.w,
-                                          child: const Center(
-                                            child: CircularProgressIndicator(
-                                                color: kColorPrimary),
-                                          ),
-                                        ),
-                                        // validator: validatedPincode,
-                                        errorStyle: TextStyle(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        maxLines: null,
-                                        // initialValue:
-                                        //     headValue() ? '400055' : "",
-                                        hintText: 'City Name',
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: kSubTextColor,
-                                        ),
-                                        hintStyle: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: kSubTextColor,
-                                        ),
-                                        textInputType: TextInputType.number,
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding:
-                                            EdgeInsets.only(bottom: 100.h)),
-                                  ],
-                                ),
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(bottom: 100.h)),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    );
-                  }
-                  return SizedBox.shrink();
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
                 }),
               ),
             ),

@@ -8,4 +8,8 @@ class StringConstants {
   //Base URL
   static const String baseUrl =
       'http://skyonliners.com/demo/democracy-apis/webservices/v1/';
+
+  static const String pincodeApiURL = "https://api.postalpincode.in/";
+
+  static const String pincode = 'pincode';
 }

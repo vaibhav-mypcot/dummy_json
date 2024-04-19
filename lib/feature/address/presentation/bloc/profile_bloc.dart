@@ -10,6 +10,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }) : super(ProfileInitialState()) {
     on<FetchProfileDataEvent>(__onFetchAllProfileData);
     on<UserAddressUpdateEvent>(_onUpdateAddress);
+    on<FetchPincodeEvent>(_onFetchPincode);
   }
 
   void __onFetchAllProfileData(
@@ -21,6 +22,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final result = profile.data?.result;
 
       emit(ProfileLoadedState(result!));
+
+
     } catch (error) {
       emit(ProfileErrorState(error.toString()));
     }
@@ -36,6 +39,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final result = updateAddress.data?.result;
 
       emit(UserAddressUpdate(result!));
+    } catch (error) {
+      emit(ProfileErrorState(error.toString()));
+    }
+  }
+
+  void _onFetchPincode(
+      FetchPincodeEvent event, Emitter<ProfileState> emit) async {
+    try {
+      if (state is ProfileLoadingState) return;
+      final pinCode = await profileRepository.fetchByPincode(event.pincode);
+      final result = pinCode.postOffice;
+
+      emit(PincodeUpdateState( result!));
     } catch (error) {
       emit(ProfileErrorState(error.toString()));
     }

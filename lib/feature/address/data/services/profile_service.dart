@@ -1,5 +1,7 @@
 import 'package:dummy_json/core/services/api/api_helper.dart';
+import 'package:dummy_json/core/utils/constants/string_constants.dart';
 import 'package:dummy_json/core/utils/header/headers.dart';
+import 'package:dummy_json/feature/address/data/model/pincode_model.dart';
 import 'package:dummy_json/feature/address/data/profile_model/profile_model.dart';
 import 'package:flutter/material.dart';
 
@@ -60,6 +62,27 @@ class ProfileServices {
       }
     } catch (e) {
       throw Exception(e.toString());
+    }
+  }
+
+  Future<PincodeModel> getPincode(String pincode) async {
+    try {
+      var header = await getHeaders();
+
+      final response = await apiHelper.callApi<PincodeModel>(
+          endPoint: "${StringConstants.pincode}/$pincode",
+          apiUrl: StringConstants.pincodeApiURL,
+          header: header!,
+          reqType: 'get',
+          fromJsonFunction: PincodeModel.fromJson);
+
+      if (response.postOffice != null) {
+        return response;
+      } else {
+        throw Exception('Failed to load profile: ${response.message}');
+      }
+    } catch (error) {
+      throw Exception(error.toString());
     }
   }
 }
