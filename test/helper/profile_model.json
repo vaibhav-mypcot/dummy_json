@@ -1,0 +1,21 @@
+{
+    "success": 1,
+    "message": "Data fetched successfully.",
+    "data": {
+        "result": {
+            "id": 73,
+            "name": "nikunj",
+            "phone_code": "91",
+            "phone": "9999999666",
+            "gender": "M",
+            "dob": "2024-02-01",
+            "address": "Duplex Appartment, Gundech Complex",
+            "pin_code": "400055",
+            "city_name": "Mumbai",
+            "state_name": "Maharashtra",
+            "fcm_notification": false,
+            "user_image": "http://skyonliners.com/demo/democracy-apis/storage/user_image/32/user_1707129134.jpg",
+            "country_name": "India"
+        }
+    }
+}
