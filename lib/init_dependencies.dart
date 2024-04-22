@@ -1,6 +1,7 @@
 import 'package:dummy_json/feature/address/data/repository/profile_repository.dart';
 import 'package:dummy_json/feature/address/data/services/profile_service.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
+import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
 import 'package:dummy_json/feature/products/data/repository/product_repository.dart';
 import 'package:dummy_json/feature/products/data/services/product_service.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
@@ -11,6 +12,8 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependencies() async {
   _initProduct();
   _initProfile();
+
+  serviceLocator.registerLazySingleton(() => NetworkBloc());
 }
 
 // --

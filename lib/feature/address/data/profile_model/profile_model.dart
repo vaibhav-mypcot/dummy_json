@@ -1,8 +1,9 @@
 import 'package:dummy_json/core/utils/parent_model/abstract_model.dart';
+import 'package:equatable/equatable.dart';
 
 import 'data.dart';
 
-class ProfileModel extends AbstractModel {
+class ProfileModel extends AbstractModel with EquatableMixin {
   int? success;
   String? message;
   Data? data;
@@ -22,4 +23,10 @@ class ProfileModel extends AbstractModel {
         'message': message,
         'data': data?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [success, message, data];
+
+  @override
+  bool get stringify => true; // Enable string conversion for debugging
 }

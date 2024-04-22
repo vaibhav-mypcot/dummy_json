@@ -14,17 +14,14 @@ class ProfileServices {
   Future<ProfileModel> getProfileData() async {
     try {
       // token = await getToken();
-      var header = await getHeaders();
+      var header = await Header().getHeaders();
+      // var header = await MockHeaderGette().get getHeaders();
 
       final response = await apiHelper.callApi<ProfileModel>(
           endPoint: 'users/me',
           header: header!,
           reqType: 'post',
           fromJsonFunction: ProfileModel.fromJson);
-
-      debugPrint("PROFILE MESSAGE : ${response.message.toString()}");
-      debugPrint("PROFILE RESPONSE : ${response.data.toString()}");
-      debugPrint("PROFILE RESPONSE SUCCESS: ${response.success.toString()}");
 
       if (response.success == 1) {
         return response;
@@ -40,7 +37,7 @@ class ProfileServices {
       String name, String address, String pinCode) async {
     try {
       // token = await getToken();
-      var header = await getHeaders();
+     var header = await Header().getHeaders();
 
       final response = await apiHelper.callApi<ProfileModel>(
           endPoint: 'users/address/update',
@@ -67,7 +64,7 @@ class ProfileServices {
 
   Future<PincodeModel> getPincode(String pincode) async {
     try {
-      var header = await getHeaders();
+  var header = await Header().getHeaders();
 
       final response = await apiHelper.callApi<PincodeModel>(
           endPoint: "${StringConstants.pincode}/$pincode",

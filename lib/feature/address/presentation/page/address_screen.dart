@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dummy_json/core/common/no_internet_screen.dart';
 import 'package:dummy_json/core/routes/app_routes.gr.dart';
 import 'package:dummy_json/core/utils/constants/colors_constants.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_event.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_state.dart';
+import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,25 +23,32 @@ class AddressScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ListView(
-                      scrollDirection: Axis.vertical,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      children: const [
-                        AddressCard(),
+        child: BlocBuilder<NetworkBloc, NetworkState>(
+          builder: (context, state) {
+            if(state is NetworkFailure){
+              return const NoInternetScreen();
+            }
+            return Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ListView(
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          children: const [
+                            AddressCard(),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );

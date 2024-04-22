@@ -1,6 +1,7 @@
-abstract class ProfileEvent {}
+abstract class ProfileEvent{}
 
-class FetchProfileDataEvent extends ProfileEvent {}
+class FetchProfileDataEvent extends ProfileEvent {
+}
 
 class UserAddressUpdateEvent extends ProfileEvent {
   final String name;
@@ -16,4 +17,5 @@ class UserAddressUpdateEvent extends ProfileEvent {
 class FetchPincodeEvent extends ProfileEvent {
   final String pincode;
   FetchPincodeEvent({required this.pincode});
+
 }

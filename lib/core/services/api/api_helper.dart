@@ -3,7 +3,7 @@ import 'package:dio/dio.dart' as d;
 import 'package:dio/dio.dart';
 import 'package:dummy_json/core/utils/constants/string_constants.dart';
 import 'package:dummy_json/core/utils/parent_model/abstract_model.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 class ApiHelper {
   // var isLoading = false.obs;

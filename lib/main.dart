@@ -1,5 +1,6 @@
 import 'package:dummy_json/core/routes/app_routes.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
+import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
 import 'package:dummy_json/init_dependencies.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,9 @@ void main() async {
       providers: [
         BlocProvider<ProductBloc>(create: (_) => serviceLocator<ProductBloc>()),
         BlocProvider<ProfileBloc>(create: (_) => serviceLocator<ProfileBloc>()),
+        BlocProvider<NetworkBloc>(
+            create: (_) =>
+                serviceLocator<NetworkBloc>()..add(NetworkObserve())),
       ],
       child: MyApp(),
     ),
