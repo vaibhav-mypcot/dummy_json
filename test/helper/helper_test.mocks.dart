@@ -4,16 +4,26 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:convert' as _i9;
-import 'dart:typed_data' as _i10;
+import 'dart:convert' as _i14;
+import 'dart:typed_data' as _i15;
 
 import 'package:dio/dio.dart' as _i2;
-import 'package:dummy_json/core/services/api/api_helper.dart' as _i5;
-import 'package:dummy_json/core/utils/header/headers.dart' as _i8;
-import 'package:dummy_json/core/utils/parent_model/abstract_model.dart' as _i6;
-import 'package:http/http.dart' as _i4;
+import 'package:dummy_json/core/services/api/api_helper.dart' as _i7;
+import 'package:dummy_json/core/utils/header/headers.dart' as _i11;
+import 'package:dummy_json/core/utils/parent_model/abstract_model.dart' as _i9;
+import 'package:dummy_json/feature/address/data/model/pincode_model.dart'
+    as _i6;
+import 'package:dummy_json/feature/address/data/profile_model/profile_model.dart'
+    as _i5;
+import 'package:dummy_json/feature/address/data/profile_model/result.dart'
+    as _i13;
+import 'package:dummy_json/feature/address/data/repository/profile_repository.dart'
+    as _i12;
+import 'package:dummy_json/feature/address/data/services/profile_service.dart'
+    as _i4;
+import 'package:http/http.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:mockito/src/dummies.dart' as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -48,8 +58,9 @@ class _FakeFuture_1<T1> extends _i1.SmartFake implements _i3.Future<T1> {
         );
 }
 
-class _FakeResponse_2 extends _i1.SmartFake implements _i4.Response {
-  _FakeResponse_2(
+class _FakeProfileServices_2 extends _i1.SmartFake
+    implements _i4.ProfileServices {
+  _FakeProfileServices_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -58,9 +69,49 @@ class _FakeResponse_2 extends _i1.SmartFake implements _i4.Response {
         );
 }
 
-class _FakeStreamedResponse_3 extends _i1.SmartFake
-    implements _i4.StreamedResponse {
-  _FakeStreamedResponse_3(
+class _FakeProfileModel_3 extends _i1.SmartFake implements _i5.ProfileModel {
+  _FakeProfileModel_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakePincodeModel_4 extends _i1.SmartFake implements _i6.PincodeModel {
+  _FakePincodeModel_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeApiHelper_5 extends _i1.SmartFake implements _i7.ApiHelper {
+  _FakeApiHelper_5(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeResponse_6 extends _i1.SmartFake implements _i8.Response {
+  _FakeResponse_6(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeStreamedResponse_7 extends _i1.SmartFake
+    implements _i8.StreamedResponse {
+  _FakeStreamedResponse_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -72,7 +123,7 @@ class _FakeStreamedResponse_3 extends _i1.SmartFake
 /// A class which mocks [ApiHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiHelper extends _i1.Mock implements _i5.ApiHelper {
+class MockApiHelper extends _i1.Mock implements _i7.ApiHelper {
   MockApiHelper() {
     _i1.throwOnMissingStub(this);
   }
@@ -105,7 +156,7 @@ class MockApiHelper extends _i1.Mock implements _i5.ApiHelper {
       );
 
   @override
-  _i3.Future<T> callApi<T extends _i6.AbstractModel>({
+  _i3.Future<T> callApi<T extends _i9.AbstractModel>({
     required String? endPoint,
     String? apiUrl,
     Map<String, dynamic>? body,
@@ -132,8 +183,8 @@ class MockApiHelper extends _i1.Mock implements _i5.ApiHelper {
             #isShowSnackbar: isShowSnackbar,
           },
         ),
-        returnValue: _i7.ifNotNull(
-              _i7.dummyValueOrNull<T>(
+        returnValue: _i10.ifNotNull(
+              _i10.dummyValueOrNull<T>(
                 this,
                 Invocation.method(
                   #callApi,
@@ -177,7 +228,7 @@ class MockApiHelper extends _i1.Mock implements _i5.ApiHelper {
 /// A class which mocks [Header].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHeader extends _i1.Mock implements _i8.Header {
+class MockHeader extends _i1.Mock implements _i11.Header {
   MockHeader() {
     _i1.throwOnMissingStub(this);
   }
@@ -185,7 +236,7 @@ class MockHeader extends _i1.Mock implements _i8.Header {
   @override
   String get accessToken => (super.noSuchMethod(
         Invocation.getter(#accessToken),
-        returnValue: _i7.dummyValue<String>(
+        returnValue: _i10.dummyValue<String>(
           this,
           Invocation.getter(#accessToken),
         ),
@@ -206,7 +257,7 @@ class MockHeader extends _i1.Mock implements _i8.Header {
           #generateBoundary,
           [],
         ),
-        returnValue: _i7.dummyValue<String>(
+        returnValue: _i10.dummyValue<String>(
           this,
           Invocation.method(
             #generateBoundary,
@@ -216,16 +267,332 @@ class MockHeader extends _i1.Mock implements _i8.Header {
       ) as String);
 }
 
+/// A class which mocks [ProfileRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProfileRepository extends _i1.Mock implements _i12.ProfileRepository {
+  MockProfileRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.ProfileServices get profileServices => (super.noSuchMethod(
+        Invocation.getter(#profileServices),
+        returnValue: _FakeProfileServices_2(
+          this,
+          Invocation.getter(#profileServices),
+        ),
+      ) as _i4.ProfileServices);
+
+  @override
+  _i3.Future<_i5.ProfileModel> fetchProfileData() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchProfileData,
+          [],
+        ),
+        returnValue: _i3.Future<_i5.ProfileModel>.value(_FakeProfileModel_3(
+          this,
+          Invocation.method(
+            #fetchProfileData,
+            [],
+          ),
+        )),
+      ) as _i3.Future<_i5.ProfileModel>);
+
+  @override
+  _i3.Future<_i5.ProfileModel> updateUserAddressData(
+    String? name,
+    String? address,
+    String? pinCode,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateUserAddressData,
+          [
+            name,
+            address,
+            pinCode,
+          ],
+        ),
+        returnValue: _i3.Future<_i5.ProfileModel>.value(_FakeProfileModel_3(
+          this,
+          Invocation.method(
+            #updateUserAddressData,
+            [
+              name,
+              address,
+              pinCode,
+            ],
+          ),
+        )),
+      ) as _i3.Future<_i5.ProfileModel>);
+
+  @override
+  _i3.Future<_i6.PincodeModel> fetchByPincode(String? pinCode) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchByPincode,
+          [pinCode],
+        ),
+        returnValue: _i3.Future<_i6.PincodeModel>.value(_FakePincodeModel_4(
+          this,
+          Invocation.method(
+            #fetchByPincode,
+            [pinCode],
+          ),
+        )),
+      ) as _i3.Future<_i6.PincodeModel>);
+}
+
+/// A class which mocks [ProfileServices].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
+  MockProfileServices() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.ApiHelper get apiHelper => (super.noSuchMethod(
+        Invocation.getter(#apiHelper),
+        returnValue: _FakeApiHelper_5(
+          this,
+          Invocation.getter(#apiHelper),
+        ),
+      ) as _i7.ApiHelper);
+
+  @override
+  set apiHelper(_i7.ApiHelper? _apiHelper) => super.noSuchMethod(
+        Invocation.setter(
+          #apiHelper,
+          _apiHelper,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  String get token => (super.noSuchMethod(
+        Invocation.getter(#token),
+        returnValue: _i10.dummyValue<String>(
+          this,
+          Invocation.getter(#token),
+        ),
+      ) as String);
+
+  @override
+  set token(String? _token) => super.noSuchMethod(
+        Invocation.setter(
+          #token,
+          _token,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.Future<_i5.ProfileModel> getProfileData() => (super.noSuchMethod(
+        Invocation.method(
+          #getProfileData,
+          [],
+        ),
+        returnValue: _i3.Future<_i5.ProfileModel>.value(_FakeProfileModel_3(
+          this,
+          Invocation.method(
+            #getProfileData,
+            [],
+          ),
+        )),
+      ) as _i3.Future<_i5.ProfileModel>);
+
+  @override
+  _i3.Future<_i5.ProfileModel> updateUserAddress(
+    String? name,
+    String? address,
+    String? pinCode,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateUserAddress,
+          [
+            name,
+            address,
+            pinCode,
+          ],
+        ),
+        returnValue: _i3.Future<_i5.ProfileModel>.value(_FakeProfileModel_3(
+          this,
+          Invocation.method(
+            #updateUserAddress,
+            [
+              name,
+              address,
+              pinCode,
+            ],
+          ),
+        )),
+      ) as _i3.Future<_i5.ProfileModel>);
+
+  @override
+  _i3.Future<_i6.PincodeModel> getPincode(String? pincode) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getPincode,
+          [pincode],
+        ),
+        returnValue: _i3.Future<_i6.PincodeModel>.value(_FakePincodeModel_4(
+          this,
+          Invocation.method(
+            #getPincode,
+            [pincode],
+          ),
+        )),
+      ) as _i3.Future<_i6.PincodeModel>);
+}
+
+/// A class which mocks [Result].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResult extends _i1.Mock implements _i13.Result {
+  MockResult() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  set id(int? _id) => super.noSuchMethod(
+        Invocation.setter(
+          #id,
+          _id,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set name(String? _name) => super.noSuchMethod(
+        Invocation.setter(
+          #name,
+          _name,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set phoneCode(String? _phoneCode) => super.noSuchMethod(
+        Invocation.setter(
+          #phoneCode,
+          _phoneCode,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set phone(String? _phone) => super.noSuchMethod(
+        Invocation.setter(
+          #phone,
+          _phone,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set gender(String? _gender) => super.noSuchMethod(
+        Invocation.setter(
+          #gender,
+          _gender,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set dob(String? _dob) => super.noSuchMethod(
+        Invocation.setter(
+          #dob,
+          _dob,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set address(String? _address) => super.noSuchMethod(
+        Invocation.setter(
+          #address,
+          _address,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set pinCode(String? _pinCode) => super.noSuchMethod(
+        Invocation.setter(
+          #pinCode,
+          _pinCode,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set cityName(String? _cityName) => super.noSuchMethod(
+        Invocation.setter(
+          #cityName,
+          _cityName,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set stateName(String? _stateName) => super.noSuchMethod(
+        Invocation.setter(
+          #stateName,
+          _stateName,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set fcmNotification(bool? _fcmNotification) => super.noSuchMethod(
+        Invocation.setter(
+          #fcmNotification,
+          _fcmNotification,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set userImage(String? _userImage) => super.noSuchMethod(
+        Invocation.setter(
+          #userImage,
+          _userImage,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set countryName(String? _countryName) => super.noSuchMethod(
+        Invocation.setter(
+          #countryName,
+          _countryName,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Map<String, dynamic> toJson() => (super.noSuchMethod(
+        Invocation.method(
+          #toJson,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+}
+
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpClient extends _i1.Mock implements _i4.Client {
+class MockHttpClient extends _i1.Mock implements _i8.Client {
   MockHttpClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.Response> head(
+  _i3.Future<_i8.Response> head(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -235,7 +602,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<_i4.Response>.value(_FakeResponse_2(
+        returnValue: _i3.Future<_i8.Response>.value(_FakeResponse_6(
           this,
           Invocation.method(
             #head,
@@ -243,10 +610,10 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i3.Future<_i4.Response>);
+      ) as _i3.Future<_i8.Response>);
 
   @override
-  _i3.Future<_i4.Response> get(
+  _i3.Future<_i8.Response> get(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -256,7 +623,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<_i4.Response>.value(_FakeResponse_2(
+        returnValue: _i3.Future<_i8.Response>.value(_FakeResponse_6(
           this,
           Invocation.method(
             #get,
@@ -264,14 +631,14 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i3.Future<_i4.Response>);
+      ) as _i3.Future<_i8.Response>);
 
   @override
-  _i3.Future<_i4.Response> post(
+  _i3.Future<_i8.Response> post(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i9.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -283,7 +650,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i4.Response>.value(_FakeResponse_2(
+        returnValue: _i3.Future<_i8.Response>.value(_FakeResponse_6(
           this,
           Invocation.method(
             #post,
@@ -295,14 +662,14 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i4.Response>);
+      ) as _i3.Future<_i8.Response>);
 
   @override
-  _i3.Future<_i4.Response> put(
+  _i3.Future<_i8.Response> put(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i9.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -314,7 +681,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i4.Response>.value(_FakeResponse_2(
+        returnValue: _i3.Future<_i8.Response>.value(_FakeResponse_6(
           this,
           Invocation.method(
             #put,
@@ -326,14 +693,14 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i4.Response>);
+      ) as _i3.Future<_i8.Response>);
 
   @override
-  _i3.Future<_i4.Response> patch(
+  _i3.Future<_i8.Response> patch(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i9.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -345,7 +712,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i4.Response>.value(_FakeResponse_2(
+        returnValue: _i3.Future<_i8.Response>.value(_FakeResponse_6(
           this,
           Invocation.method(
             #patch,
@@ -357,14 +724,14 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i4.Response>);
+      ) as _i3.Future<_i8.Response>);
 
   @override
-  _i3.Future<_i4.Response> delete(
+  _i3.Future<_i8.Response> delete(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i9.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -376,7 +743,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i4.Response>.value(_FakeResponse_2(
+        returnValue: _i3.Future<_i8.Response>.value(_FakeResponse_6(
           this,
           Invocation.method(
             #delete,
@@ -388,7 +755,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i4.Response>);
+      ) as _i3.Future<_i8.Response>);
 
   @override
   _i3.Future<String> read(
@@ -401,7 +768,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<String>.value(_i7.dummyValue<String>(
+        returnValue: _i3.Future<String>.value(_i10.dummyValue<String>(
           this,
           Invocation.method(
             #read,
@@ -412,7 +779,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
       ) as _i3.Future<String>);
 
   @override
-  _i3.Future<_i10.Uint8List> readBytes(
+  _i3.Future<_i15.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -422,25 +789,25 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<_i10.Uint8List>.value(_i10.Uint8List(0)),
-      ) as _i3.Future<_i10.Uint8List>);
+        returnValue: _i3.Future<_i15.Uint8List>.value(_i15.Uint8List(0)),
+      ) as _i3.Future<_i15.Uint8List>);
 
   @override
-  _i3.Future<_i4.StreamedResponse> send(_i4.BaseRequest? request) =>
+  _i3.Future<_i8.StreamedResponse> send(_i8.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
           [request],
         ),
         returnValue:
-            _i3.Future<_i4.StreamedResponse>.value(_FakeStreamedResponse_3(
+            _i3.Future<_i8.StreamedResponse>.value(_FakeStreamedResponse_7(
           this,
           Invocation.method(
             #send,
             [request],
           ),
         )),
-      ) as _i3.Future<_i4.StreamedResponse>);
+      ) as _i3.Future<_i8.StreamedResponse>);
 
   @override
   void close() => super.noSuchMethod(
