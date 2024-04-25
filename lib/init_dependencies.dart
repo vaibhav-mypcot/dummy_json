@@ -14,6 +14,7 @@ Future<void> initDependencies() async {
   _initProfile();
 
   serviceLocator.registerLazySingleton(() => NetworkBloc());
+  
 }
 
 // --
