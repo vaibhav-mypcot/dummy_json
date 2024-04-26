@@ -4,6 +4,7 @@ import 'package:dummy_json/feature/home/presentation/localization_bloc/localizat
 import 'package:dummy_json/feature/home/presentation/theme_bloc/theme_block.dart';
 import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
+import 'package:dummy_json/feature/suggest_question/prsentation/bloc/suggest_question_bloc.dart';
 import 'package:dummy_json/init_dependencies.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,8 @@ void main() async {
                 serviceLocator<NetworkBloc>()..add(NetworkObserve())),
         BlocProvider(create: (_) => LocalizationBloc()),
         BlocProvider(create: (_) => ThemeBloc()),
+        BlocProvider<SuggestQuestionBloc>(
+            create: (_) => serviceLocator<SuggestQuestionBloc>()),
       ],
       child: MyApp(),
     ),

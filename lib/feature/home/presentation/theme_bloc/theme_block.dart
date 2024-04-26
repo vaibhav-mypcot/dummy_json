@@ -13,17 +13,17 @@ class ThemeBloc extends HydratedBloc<ThemeChangeEvent, ThemeState> {
     print(state.isDark);
     emit(ThemeState(state.isDark));
   }
-  
+
   @override
   ThemeState? fromJson(Map<String, dynamic> json) {
-   if(json.containsKey('isDark')) {
-    final isDark = json['isDark'] as bool;
-    return ThemeState(isDark);
-   }
+    if (json.containsKey('isDark')) {
+      final isDark = json['isDark'] as bool;
+      return ThemeState(isDark);
+    }
   }
-  
+
   @override
   Map<String, dynamic>? toJson(ThemeState state) {
-    return {'isDark' : state.isDark};
+    return {'isDark': state.isDark};
   }
 }

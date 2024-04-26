@@ -19,6 +19,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       if (state is ProfileLoadingState) return;
 
       final profile = await profileRepository.fetchProfileData();
+      
       final result = profile.data?.result;
 
       emit(ProfileLoadedState(result!));

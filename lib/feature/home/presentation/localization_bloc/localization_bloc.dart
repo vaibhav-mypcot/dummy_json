@@ -9,8 +9,7 @@ part 'localization_state.dart';
 
 class LocalizationBloc
     extends HydratedBloc<LocalizationEvent, LocalizationState> {
-  LocalizationBloc()
-      : super(LocalizationState(Locale('en'))) {
+  LocalizationBloc() : super(LocalizationState(Locale('en'))) {
     on<LoadLocalization>(changeLanguage);
   }
 

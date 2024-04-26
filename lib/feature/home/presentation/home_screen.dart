@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   final List title = [
     'Product',
     'Address',
+    'Suggest Question',
     'Cart',
     'Users',
     'Posts',
@@ -26,6 +27,7 @@ class HomeScreen extends StatelessWidget {
   final List<dynamic> routes = [
     const ProductListScreenRoute(),
     const AddressScreenRoute(),
+    SuggestQuestionScreenRoute(),
   ];
 
   @override
@@ -48,8 +50,8 @@ class HomeScreen extends StatelessWidget {
                 context.read<ThemeBloc>().add(ThemeChangeEvent());
               },
               icon: themeBloc.isDark
-                  ? Icon(Icons.brightness_2_rounded)
-                  : Icon(Icons.sunny)),
+                  ? const Icon(Icons.brightness_2_rounded)
+                  : const Icon(Icons.sunny)),
         ],
       ),
       body: Container(

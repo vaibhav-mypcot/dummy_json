@@ -12,5 +12,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: ProductListScreenRoute.page),
         AutoRoute(page: AddressScreenRoute.page),
         AutoRoute(page: EditAddressScreenRoute.page),
+        AutoRoute(page: SuggestQuestionScreenRoute.page),
       ];
 }
