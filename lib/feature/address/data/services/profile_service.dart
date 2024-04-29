@@ -36,7 +36,7 @@ class ProfileServices {
       String name, String address, String pinCode) async {
     try {
       // token = await getToken();
-     var header = await Header().getHeaders();
+      var header = await Header().getHeaders();
 
       final response = await apiHelper.callApi<ProfileModel>(
           endPoint: 'users/address/update',
@@ -63,7 +63,7 @@ class ProfileServices {
 
   Future<PincodeModel> getPincode(String pincode) async {
     try {
-  var header = await Header().getHeaders();
+      var header = await Header().getHeaders();
 
       final response = await apiHelper.callApi<PincodeModel>(
           endPoint: "${StringConstants.pincode}/$pincode",

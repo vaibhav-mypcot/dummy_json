@@ -5,6 +5,7 @@ import 'package:dummy_json/feature/home/presentation/theme_bloc/theme_block.dart
 import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
 import 'package:dummy_json/feature/suggest_question/prsentation/bloc/suggest_question_bloc.dart';
+import 'package:dummy_json/feature/users/presentation/bloc/user_bloc.dart';
 import 'package:dummy_json/init_dependencies.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,31 @@ void main() async {
   );
   // await dotenv.load(fileName: '.env');
 
+  // Handling grey screen
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    bool inDebug = false;
+    assert(() {
+      inDebug = true;
+      return true;
+    }());
+
+    if (inDebug) {
+      return ErrorWidget(details.exception);
+    }
+    return Container(
+      alignment: Alignment.center,
+      child: Text(
+        'Error\n${details.exception}',
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.amberAccent,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+      ),
+    );
+  };
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -38,6 +64,7 @@ void main() async {
         BlocProvider(create: (_) => ThemeBloc()),
         BlocProvider<SuggestQuestionBloc>(
             create: (_) => serviceLocator<SuggestQuestionBloc>()),
+        BlocProvider<UserBloc>(create: (_) => serviceLocator<UserBloc>()),
       ],
       child: MyApp(),
     ),

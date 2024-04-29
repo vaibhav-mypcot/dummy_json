@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:dummy_json/feature/address/presentation/page/address_screen.dart'
     as _i1;
 import 'package:dummy_json/feature/address/presentation/page/edit_address_screen.dart'
@@ -20,21 +20,23 @@ import 'package:dummy_json/feature/products/presentation/page/product_list_scree
     as _i5;
 import 'package:dummy_json/feature/suggest_question/prsentation/page/suggest_question_screen.dart'
     as _i6;
-import 'package:flutter/material.dart' as _i8;
+import 'package:dummy_json/feature/users/presentation/page/user_data_screen.dart'
+    as _i7;
+import 'package:flutter/material.dart' as _i9;
 
-abstract class $AppRouter extends _i7.RootStackRouter {
+abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     AddressScreenRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AddressScreen(),
       );
     },
     EditAddressScreenRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.EditAddressScreen(),
       );
@@ -42,19 +44,19 @@ abstract class $AppRouter extends _i7.RootStackRouter {
     HomeScreenRoute.name: (routeData) {
       final args = routeData.argsAs<HomeScreenRouteArgs>(
           orElse: () => const HomeScreenRouteArgs());
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.HomeScreen(key: args.key),
       );
     },
     LanguageScreenRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.LanguageScreen(),
       );
     },
     ProductListScreenRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.ProductListScreen(),
       );
@@ -62,9 +64,15 @@ abstract class $AppRouter extends _i7.RootStackRouter {
     SuggestQuestionScreenRoute.name: (routeData) {
       final args = routeData.argsAs<SuggestQuestionScreenRouteArgs>(
           orElse: () => const SuggestQuestionScreenRouteArgs());
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i6.SuggestQuestionScreen(key: args.key),
+      );
+    },
+    UserDataRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.UserData(),
       );
     },
   };
@@ -72,8 +80,8 @@ abstract class $AppRouter extends _i7.RootStackRouter {
 
 /// generated route for
 /// [_i1.AddressScreen]
-class AddressScreenRoute extends _i7.PageRouteInfo<void> {
-  const AddressScreenRoute({List<_i7.PageRouteInfo>? children})
+class AddressScreenRoute extends _i8.PageRouteInfo<void> {
+  const AddressScreenRoute({List<_i8.PageRouteInfo>? children})
       : super(
           AddressScreenRoute.name,
           initialChildren: children,
@@ -81,13 +89,13 @@ class AddressScreenRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'AddressScreenRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.EditAddressScreen]
-class EditAddressScreenRoute extends _i7.PageRouteInfo<void> {
-  const EditAddressScreenRoute({List<_i7.PageRouteInfo>? children})
+class EditAddressScreenRoute extends _i8.PageRouteInfo<void> {
+  const EditAddressScreenRoute({List<_i8.PageRouteInfo>? children})
       : super(
           EditAddressScreenRoute.name,
           initialChildren: children,
@@ -95,15 +103,15 @@ class EditAddressScreenRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'EditAddressScreenRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.HomeScreen]
-class HomeScreenRoute extends _i7.PageRouteInfo<HomeScreenRouteArgs> {
+class HomeScreenRoute extends _i8.PageRouteInfo<HomeScreenRouteArgs> {
   HomeScreenRoute({
-    _i8.Key? key,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           HomeScreenRoute.name,
           args: HomeScreenRouteArgs(key: key),
@@ -112,14 +120,14 @@ class HomeScreenRoute extends _i7.PageRouteInfo<HomeScreenRouteArgs> {
 
   static const String name = 'HomeScreenRoute';
 
-  static const _i7.PageInfo<HomeScreenRouteArgs> page =
-      _i7.PageInfo<HomeScreenRouteArgs>(name);
+  static const _i8.PageInfo<HomeScreenRouteArgs> page =
+      _i8.PageInfo<HomeScreenRouteArgs>(name);
 }
 
 class HomeScreenRouteArgs {
   const HomeScreenRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -129,8 +137,8 @@ class HomeScreenRouteArgs {
 
 /// generated route for
 /// [_i4.LanguageScreen]
-class LanguageScreenRoute extends _i7.PageRouteInfo<void> {
-  const LanguageScreenRoute({List<_i7.PageRouteInfo>? children})
+class LanguageScreenRoute extends _i8.PageRouteInfo<void> {
+  const LanguageScreenRoute({List<_i8.PageRouteInfo>? children})
       : super(
           LanguageScreenRoute.name,
           initialChildren: children,
@@ -138,13 +146,13 @@ class LanguageScreenRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'LanguageScreenRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.ProductListScreen]
-class ProductListScreenRoute extends _i7.PageRouteInfo<void> {
-  const ProductListScreenRoute({List<_i7.PageRouteInfo>? children})
+class ProductListScreenRoute extends _i8.PageRouteInfo<void> {
+  const ProductListScreenRoute({List<_i8.PageRouteInfo>? children})
       : super(
           ProductListScreenRoute.name,
           initialChildren: children,
@@ -152,16 +160,16 @@ class ProductListScreenRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'ProductListScreenRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.SuggestQuestionScreen]
 class SuggestQuestionScreenRoute
-    extends _i7.PageRouteInfo<SuggestQuestionScreenRouteArgs> {
+    extends _i8.PageRouteInfo<SuggestQuestionScreenRouteArgs> {
   SuggestQuestionScreenRoute({
-    _i8.Key? key,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           SuggestQuestionScreenRoute.name,
           args: SuggestQuestionScreenRouteArgs(key: key),
@@ -170,17 +178,31 @@ class SuggestQuestionScreenRoute
 
   static const String name = 'SuggestQuestionScreenRoute';
 
-  static const _i7.PageInfo<SuggestQuestionScreenRouteArgs> page =
-      _i7.PageInfo<SuggestQuestionScreenRouteArgs>(name);
+  static const _i8.PageInfo<SuggestQuestionScreenRouteArgs> page =
+      _i8.PageInfo<SuggestQuestionScreenRouteArgs>(name);
 }
 
 class SuggestQuestionScreenRouteArgs {
   const SuggestQuestionScreenRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
     return 'SuggestQuestionScreenRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [_i7.UserData]
+class UserDataRoute extends _i8.PageRouteInfo<void> {
+  const UserDataRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          UserDataRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UserDataRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }

@@ -25,7 +25,7 @@ class AddressScreen extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<NetworkBloc, NetworkState>(
           builder: (context, state) {
-            if(state is NetworkFailure){
+            if (state is NetworkFailure) {
               return const NoInternetScreen();
             }
             return Column(

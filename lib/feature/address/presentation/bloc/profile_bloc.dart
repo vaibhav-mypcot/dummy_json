@@ -19,12 +19,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       if (state is ProfileLoadingState) return;
 
       final profile = await profileRepository.fetchProfileData();
-      
+
       final result = profile.data?.result;
 
       emit(ProfileLoadedState(result!));
-
-
     } catch (error) {
       emit(ProfileErrorState(error.toString()));
     }
@@ -52,7 +50,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final pinCode = await profileRepository.fetchByPincode(event.pincode);
       final result = pinCode.postOffice;
 
-      emit(PincodeUpdateState( result!));
+      emit(PincodeUpdateState(result!));
     } catch (error) {
       emit(ProfileErrorState(error.toString()));
     }

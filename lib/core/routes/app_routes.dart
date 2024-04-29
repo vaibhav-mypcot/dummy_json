@@ -13,5 +13,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: AddressScreenRoute.page),
         AutoRoute(page: EditAddressScreenRoute.page),
         AutoRoute(page: SuggestQuestionScreenRoute.page),
+        AutoRoute(page: UserDataRoute.page),
       ];
 }

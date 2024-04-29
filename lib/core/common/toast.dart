@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Toast extends StatelessWidget {
   const Toast({super.key});
-   void showToast(BuildContext context, String message) {
+  void showToast(BuildContext context, String message) {
     final snackBar = SnackBar(
       content: Text(message),
       duration: Duration(

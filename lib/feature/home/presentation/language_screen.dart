@@ -14,8 +14,7 @@ class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeBloc = BlocProvider.of<LocalizationBloc>(context);
-    var groupValue =
-        context.read<LocalizationBloc>().state.locale.languageCode;
+    var groupValue = context.read<LocalizationBloc>().state.locale.languageCode;
     return BlocConsumer<LocalizationBloc, LocalizationState>(
       listener: (context, state) {
         groupValue = state.locale.languageCode;

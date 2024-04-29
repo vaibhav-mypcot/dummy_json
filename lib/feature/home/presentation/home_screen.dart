@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
     'Product',
     'Address',
     'Suggest Question',
-    'Cart',
     'Users',
+    'Cart',
     'Posts',
     'Image',
     'Recipes'
@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
     const ProductListScreenRoute(),
     const AddressScreenRoute(),
     SuggestQuestionScreenRoute(),
+    const UserDataRoute(),
   ];
 
   @override

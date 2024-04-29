@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:dummy_json/core/utils/constants/string_constants.dart';
 import 'package:dummy_json/core/utils/parent_model/abstract_model.dart';
 
-
 class ApiHelper {
   // var isLoading = false.obs;
   var cancelToken = d.CancelToken();

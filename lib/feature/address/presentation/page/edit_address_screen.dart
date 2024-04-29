@@ -53,7 +53,7 @@ class _EditAddressScreenState extends State<EditAddressScreen>
       body: SafeArea(
         child: BlocBuilder<NetworkBloc, NetworkState>(
           builder: (context, state) {
-              if (state is NetworkFailure) {
+            if (state is NetworkFailure) {
               return const NoInternetScreen();
             }
             return Column(

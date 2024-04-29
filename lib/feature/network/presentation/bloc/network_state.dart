@@ -1,8 +1,6 @@
 part of 'network_bloc.dart';
 
-abstract class NetworkState{
-
-}
+abstract class NetworkState {}
 
 final class NetworkInitial extends NetworkState {}
 

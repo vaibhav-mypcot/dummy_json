@@ -15,4 +15,3 @@ class Data {
         "result": result?.toJson(),
       };
 }
-

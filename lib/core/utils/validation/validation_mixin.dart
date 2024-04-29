@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_new
 
-
 mixin ValidationsMixin {
-
   String? validatedName(String? value) {
     if (value == null || value.isEmpty || value.length >= 52) {
       return 'Please enter valid name';

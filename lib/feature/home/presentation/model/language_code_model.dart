@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class LanguageCodeModel  extends Equatable{
-   final String languageCode;
+class LanguageCodeModel extends Equatable {
+  final String languageCode;
 
   const LanguageCodeModel({this.languageCode = 'en'});
-
 
   // Edit the value of immutable state
   LanguageCodeModel copyWith({String? languageCode}) {
@@ -20,11 +19,8 @@ class LanguageCodeModel  extends Equatable{
   factory LanguageCodeModel.fromJson(Map<String, dynamic> json) {
     return LanguageCodeModel(languageCode: json['languageCode']);
   }
-  
+
   @override
   // TODO: implement props
   List<Object?> get props => [languageCode];
-   
-
-  
 }
