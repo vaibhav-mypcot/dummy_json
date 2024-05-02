@@ -70,6 +70,7 @@ class _AddressCardState extends State<AddressCard> {
   }
 
   var updatedData;
+  bool isCall = false;
 
   // @override
   // void didChangeDependencies() {
@@ -93,7 +94,10 @@ class _AddressCardState extends State<AddressCard> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
       if (updatedData != null && updatedData == 'updatedData') {
-        context.read<ProfileBloc>().add(FetchProfileDataEvent());
+        if (!isCall) {
+          context.read<ProfileBloc>().add(FetchProfileDataEvent());
+          isCall = true;
+        }
       }
       if (state is ProfileLoadingState) {
         return const Center(

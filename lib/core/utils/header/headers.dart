@@ -4,7 +4,7 @@ import 'package:dummy_json/core/utils/functions/functions.dart';
 import 'package:dummy_json/core/utils/constants/string_constants.dart';
 import 'package:flutter/foundation.dart';
 
-class Header {
+class HeaderClass {
   String generateBoundary() {
     final random = Random();
     final codeUnits = List.generate(16, (index) {
@@ -17,8 +17,8 @@ class Header {
   String accessToken =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9za3lvbmxpbmVycy5jb21cL2RlbW9cL2RlbW9jcmFjeS1hcGlzXC93ZWJzZXJ2aWNlc1wvdjFcL3ZhbGlkYXRlX290cCIsImlhdCI6MTcwNjg1ODUxMSwiZXhwIjoxNzIyNTgzMzExLCJuYmYiOjE3MDY4NTg1MTEsImp0aSI6IlE4bE5xNkN4Z1pjc0diNngiLCJzdWIiOjczLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-QTKvI5yuhwkYYbe0RQ-LsK2_j8RBNUPAJYAeUD5W2g';
 
-  Future<Map<String, String>>? getHeaders() async {
-    String basicAuth = await authHeader();
+  Future<Map<String, dynamic>>? getHeaders() async {
+    String basicAuth =  authHeader();
     String? token = accessToken;
     String acceptedLanguages = StringConstants.acceptedLanguage;
     String platform = Platform.operatingSystem;
@@ -27,7 +27,7 @@ class Header {
     // debugPrint("App Version: blalalala alamal alam: $applicationVersion");
     debugPrint("Access Token: $token");
 
-    Map<String, String> header = {
+    Map<String, dynamic> header = {
       'authorization': basicAuth,
       'Accept-Language': acceptedLanguages,
       'access-token': token ?? "",

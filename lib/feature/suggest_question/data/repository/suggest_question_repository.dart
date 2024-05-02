@@ -13,7 +13,7 @@ class SuggestQuestionRepository {
           .getSuggestQuestionData(question, textControllers);
       return suggestQuestionData;
     } catch (e) {
-      throw Exception('Failed to fetch data: $e');
+      throw Exception('Failed to fetch dataaa: $e');
     }
   }
 }

@@ -1,6 +1,12 @@
-abstract class ProfileEvent {}
+import 'package:equatable/equatable.dart';
 
-class FetchProfileDataEvent extends ProfileEvent {}
+abstract class ProfileEvent extends Equatable {}
+
+class FetchProfileDataEvent extends ProfileEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
 
 class UserAddressUpdateEvent extends ProfileEvent {
   final String name;
@@ -11,9 +17,17 @@ class UserAddressUpdateEvent extends ProfileEvent {
     required this.address,
     required this.pincode,
   });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }
 
 class FetchPincodeEvent extends ProfileEvent {
   final String pincode;
   FetchPincodeEvent({required this.pincode});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }

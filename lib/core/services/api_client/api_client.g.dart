@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://dummyjson.com/';
+    baseUrl ??= 'http://skyonliners.com/demo/democracy-apis/webservices/v1/';
   }
 
   final Dio _dio;
@@ -47,6 +47,142 @@ class _ApiClient implements ApiClient {
     return value;
   }
 
+  @override
+  Future<ProfileModel> getProfileData(
+    String basicAuth,
+    String acceptedLanguages,
+    String token,
+    String platform,
+    String uuid,
+    String version,
+    String Accept,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'Authorization': basicAuth,
+      r'Accept-Language': acceptedLanguages,
+      r'access-token': token,
+      r'platform': platform,
+      r'uuid': uuid,
+      r'version': version,
+      r'Accept': Accept,
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProfileModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users/me',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ProfileModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ProfileModel> updateAddressData(
+    String basicAuth,
+    String acceptedLanguages,
+    String token,
+    String platform,
+    String uuid,
+    String version,
+    String Accept,
+    Map<String, dynamic> body,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'Authorization': basicAuth,
+      r'Accept-Language': acceptedLanguages,
+      r'access-token': token,
+      r'platform': platform,
+      r'uuid': uuid,
+      r'version': version,
+      r'Accept': Accept,
+    };
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProfileModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users/address/update',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ProfileModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SuggestQuestionModel> getSuggestQuestionData(
+    String basicAuth,
+    String acceptedLanguages,
+    String token,
+    String platform,
+    String uuid,
+    String version,
+    String Accept,
+    Map<String, dynamic> body,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'Authorization': basicAuth,
+      r'Accept-Language': acceptedLanguages,
+      r'access-token': token,
+      r'platform': platform,
+      r'uuid': uuid,
+      r'version': version,
+      r'Accept': Accept,
+    };
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SuggestQuestionModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'suggest_question',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SuggestQuestionModel.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
@@ -76,4 +212,8 @@ class _ApiClient implements ApiClient {
 
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
+  
+  @override
+  // TODO: implement header
+  Future<Map<String, dynamic>>? get header => throw UnimplementedError();
 }

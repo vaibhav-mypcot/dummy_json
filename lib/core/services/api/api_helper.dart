@@ -12,7 +12,7 @@ class ApiHelper {
     required String endPoint,
     String? apiUrl,
     Map<String, dynamic>? body,
-    required Map<String, String> header,
+    required Map<String, dynamic> header,
     required String reqType,
     required T Function(Map<String, dynamic> json) fromJsonFunction,
     int? page,

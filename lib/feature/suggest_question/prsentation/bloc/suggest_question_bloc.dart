@@ -41,7 +41,7 @@ class SuggestQuestionBloc
     try {
       final questionData = await suggestQuestionRepository.fetchSuggestQuestion(
           event.question, event.textControllers);
-      final result = questionData.data?.result;
+      final result = questionData.data?.result!;
       emit(SuggestQuestionSubmit(result!));
     } catch (e) {
       emit(QuestionErrorState(e.toString()));

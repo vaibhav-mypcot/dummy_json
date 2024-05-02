@@ -33,8 +33,6 @@ class _EditAddressScreenState extends State<EditAddressScreen>
   final cityController = TextEditingController();
   final stateController = TextEditingController();
 
-  Timer? _debounce;
-
   @override
   void initState() {
     super.initState();
@@ -68,13 +66,19 @@ class _EditAddressScreenState extends State<EditAddressScreen>
                           child: CircularProgressIndicator(),
                         );
                       } else if (state is ProfileLoadedState) {
-                        nameController.text = state.result!.name.toString();
-                        addressController.text =
-                            state.result!.address.toString();
-                        pincodeController.text =
-                            state.result!.pinCode.toString();
-                        stateController.text = state.result!.stateName!;
-                        cityController.text = state.result!.cityName!;
+                        if (nameController.text.isEmpty &&
+                            addressController.text.isEmpty &&
+                            pincodeController.text.isEmpty &&
+                            stateController.text.isEmpty &&
+                            cityController.text.isEmpty) {
+                          nameController.text = state.result!.name.toString();
+                          addressController.text =
+                              state.result!.address.toString();
+                          pincodeController.text =
+                              state.result!.pinCode.toString();
+                          stateController.text = state.result!.stateName!;
+                          cityController.text = state.result!.cityName!;
+                        }
                       } else if (state is PincodeUpdateState) {
                         stateController.text = state.postOffice.first.state!;
                         cityController.text = state.postOffice.first.district!;
@@ -113,6 +117,13 @@ class _EditAddressScreenState extends State<EditAddressScreen>
                                         controller: nameController,
                                         // initialValue:
                                         //     headValue() ? "Guest" : "",
+                                        onChanged: (value) {
+                                          if (nameController.text.isNotEmpty) {
+                                            nameController.clear();
+                                            print("value clear");
+                                          }
+                                          nameController.text = value;
+                                        },
                                         hintText: 'Enter Name',
                                         hintStyle: TextStyle(
                                           fontSize: 14.sp,

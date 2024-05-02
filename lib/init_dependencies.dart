@@ -52,7 +52,8 @@ void _initProfile() {
   serviceLocator
 
     // Services
-    ..registerLazySingleton<ProfileServices>(() => ProfileServices())
+    ..registerLazySingleton<ProfileServices>(
+        () => ProfileServices(serviceLocator()))
 
     // Repository
     ..registerFactory<ProfileRepository>(() => ProfileRepository(
@@ -71,7 +72,7 @@ void _initProfile() {
 void _initSuggestQuestions() {
   serviceLocator
     ..registerLazySingleton<SuggestQuestionService>(
-        () => SuggestQuestionService())
+        () => SuggestQuestionService(serviceLocator()))
     ..registerFactory<SuggestQuestionRepository>(
         () => SuggestQuestionRepository(
               serviceLocator(),

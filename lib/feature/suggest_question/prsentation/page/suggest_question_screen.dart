@@ -63,6 +63,7 @@ class _SuggestQuestionScreenState extends State<SuggestQuestionScreen>
         child: BlocConsumer<SuggestQuestionBloc, SuggestQuestionState>(
           listener: (context, state) {
             if (state is QuestionErrorState) {
+              print(state.message.toString());
               Toast().showToast(context, state.message.toString());
             } else if (state is SuggestQuestionSubmit) {
               Toast().showToast(context, 'Questions sent successfully');
@@ -96,6 +97,7 @@ class _SuggestQuestionScreenState extends State<SuggestQuestionScreen>
                             SizedBox(height: 18.h),
                             ListView(
                               shrinkWrap: true,
+                            
                               scrollDirection: Axis.vertical,
                               physics: const NeverScrollableScrollPhysics(),
                               children: [
