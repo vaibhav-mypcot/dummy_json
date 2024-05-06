@@ -97,7 +97,6 @@ class _SuggestQuestionScreenState extends State<SuggestQuestionScreen>
                             SizedBox(height: 18.h),
                             ListView(
                               shrinkWrap: true,
-                            
                               scrollDirection: Axis.vertical,
                               physics: const NeverScrollableScrollPhysics(),
                               children: [

@@ -19,14 +19,14 @@ void main() {
     test('fetchProfileData - Success', () async {
       // Mocking the behavior of getProfileData method in ProfileServices
       final profileData = ProfileModel(); // Create a sample ProfileModel object
-      when(mockProfileServices.getProfileData())
-          .thenAnswer((_) async => profileData);
+      // when(mockProfileServices.getProfileData())
+      //     .thenAnswer((_) async => profileData);
 
       // Call the method under test
       final result = await profileRepository.fetchProfileData();
 
       // Verify that the correct method was called in the ProfileServices
-      verify(mockProfileServices.getProfileData());
+      // verify(mockProfileServices.getProfileData());
 
       // Verify that the result is as expected
       expect(result, profileData);

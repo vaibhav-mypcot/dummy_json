@@ -4,40 +4,46 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:convert' as _i22;
-import 'dart:typed_data' as _i23;
+import 'dart:convert' as _i25;
+import 'dart:typed_data' as _i26;
 
 import 'package:dio/dio.dart' as _i2;
 import 'package:dummy_json/core/services/api/api_helper.dart' as _i7;
 import 'package:dummy_json/core/services/api_client/api_client.dart' as _i8;
-import 'package:dummy_json/core/utils/header/headers.dart' as _i17;
-import 'package:dummy_json/core/utils/parent_model/abstract_model.dart' as _i14;
+import 'package:dummy_json/core/utils/header/headers.dart' as _i19;
+import 'package:dummy_json/core/utils/parent_model/abstract_model.dart' as _i16;
 import 'package:dummy_json/feature/address/data/model/pincode_model.dart'
     as _i6;
 import 'package:dummy_json/feature/address/data/profile_model/profile_model.dart'
     as _i5;
 import 'package:dummy_json/feature/address/data/profile_model/result.dart'
-    as _i21;
+    as _i24;
 import 'package:dummy_json/feature/address/data/repository/profile_repository.dart'
-    as _i16;
+    as _i18;
 import 'package:dummy_json/feature/address/data/services/profile_service.dart'
     as _i4;
+import 'package:dummy_json/feature/home_collection/data/home_model/home_model.dart'
+    as _i13;
+import 'package:dummy_json/feature/home_collection/data/repositories/home_repository.dart'
+    as _i23;
+import 'package:dummy_json/feature/home_collection/data/services/home_services.dart'
+    as _i14;
 import 'package:dummy_json/feature/onboarding/data/repository/startup_repository.dart'
-    as _i20;
+    as _i22;
 import 'package:dummy_json/feature/onboarding/data/services/startup_services.dart'
     as _i12;
 import 'package:dummy_json/feature/onboarding/data/startup_model/startup_model.dart'
     as _i11;
 import 'package:dummy_json/feature/suggest_question/data/repository/suggest_question_repository.dart'
-    as _i18;
+    as _i20;
 import 'package:dummy_json/feature/suggest_question/data/services/suggest_question_service.dart'
     as _i9;
 import 'package:dummy_json/feature/suggest_question/data/suggest_question_model/suggest_question_model.dart'
     as _i10;
-import 'package:flutter/material.dart' as _i19;
-import 'package:http/http.dart' as _i13;
+import 'package:flutter/material.dart' as _i21;
+import 'package:http/http.dart' as _i15;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i15;
+import 'package:mockito/src/dummies.dart' as _i17;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -176,8 +182,8 @@ class _FakeStartupServices_11 extends _i1.SmartFake
         );
 }
 
-class _FakeResponse_12 extends _i1.SmartFake implements _i13.Response {
-  _FakeResponse_12(
+class _FakeHomeModel_12 extends _i1.SmartFake implements _i13.HomeModel {
+  _FakeHomeModel_12(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -186,9 +192,29 @@ class _FakeResponse_12 extends _i1.SmartFake implements _i13.Response {
         );
 }
 
-class _FakeStreamedResponse_13 extends _i1.SmartFake
-    implements _i13.StreamedResponse {
-  _FakeStreamedResponse_13(
+class _FakeHomeServices_13 extends _i1.SmartFake implements _i14.HomeServices {
+  _FakeHomeServices_13(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeResponse_14 extends _i1.SmartFake implements _i15.Response {
+  _FakeResponse_14(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeStreamedResponse_15 extends _i1.SmartFake
+    implements _i15.StreamedResponse {
+  _FakeStreamedResponse_15(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -233,7 +259,7 @@ class MockApiHelper extends _i1.Mock implements _i7.ApiHelper {
       );
 
   @override
-  _i3.Future<T> callApi<T extends _i14.AbstractModel>({
+  _i3.Future<T> callApi<T extends _i16.AbstractModel>({
     required String? endPoint,
     String? apiUrl,
     Map<String, dynamic>? body,
@@ -260,8 +286,8 @@ class MockApiHelper extends _i1.Mock implements _i7.ApiHelper {
             #isShowSnackbar: isShowSnackbar,
           },
         ),
-        returnValue: _i15.ifNotNull(
-              _i15.dummyValueOrNull<T>(
+        returnValue: _i17.ifNotNull(
+              _i17.dummyValueOrNull<T>(
                 this,
                 Invocation.method(
                   #callApi,
@@ -305,7 +331,7 @@ class MockApiHelper extends _i1.Mock implements _i7.ApiHelper {
 /// A class which mocks [ProfileRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProfileRepository extends _i1.Mock implements _i16.ProfileRepository {
+class MockProfileRepository extends _i1.Mock implements _i18.ProfileRepository {
   MockProfileRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -435,7 +461,7 @@ class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
   @override
   String get basicAuth => (super.noSuchMethod(
         Invocation.getter(#basicAuth),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#basicAuth),
         ),
@@ -453,7 +479,7 @@ class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
   @override
   String get acceptedLanguages => (super.noSuchMethod(
         Invocation.getter(#acceptedLanguages),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#acceptedLanguages),
         ),
@@ -471,7 +497,7 @@ class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
   @override
   String get platform => (super.noSuchMethod(
         Invocation.getter(#platform),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#platform),
         ),
@@ -489,7 +515,7 @@ class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
   @override
   String get accessToken => (super.noSuchMethod(
         Invocation.getter(#accessToken),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#accessToken),
         ),
@@ -567,7 +593,7 @@ class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
 /// A class which mocks [HeaderClass].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHeaderClass extends _i1.Mock implements _i17.HeaderClass {
+class MockHeaderClass extends _i1.Mock implements _i19.HeaderClass {
   MockHeaderClass() {
     _i1.throwOnMissingStub(this);
   }
@@ -575,7 +601,7 @@ class MockHeaderClass extends _i1.Mock implements _i17.HeaderClass {
   @override
   String get accessToken => (super.noSuchMethod(
         Invocation.getter(#accessToken),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#accessToken),
         ),
@@ -596,7 +622,7 @@ class MockHeaderClass extends _i1.Mock implements _i17.HeaderClass {
           #generateBoundary,
           [],
         ),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.method(
             #generateBoundary,
@@ -610,7 +636,7 @@ class MockHeaderClass extends _i1.Mock implements _i17.HeaderClass {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSuggestQuestionRepository extends _i1.Mock
-    implements _i18.SuggestQuestionRepository {
+    implements _i20.SuggestQuestionRepository {
   MockSuggestQuestionRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -627,7 +653,7 @@ class MockSuggestQuestionRepository extends _i1.Mock
   @override
   _i3.Future<_i10.SuggestQuestionModel> fetchSuggestQuestion(
     String? question,
-    List<_i19.TextEditingController>? textControllers,
+    List<_i21.TextEditingController>? textControllers,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -681,7 +707,7 @@ class MockSuggestQuestionService extends _i1.Mock
   @override
   String get token => (super.noSuchMethod(
         Invocation.getter(#token),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#token),
         ),
@@ -726,7 +752,7 @@ class MockSuggestQuestionService extends _i1.Mock
   @override
   String get basicAuth => (super.noSuchMethod(
         Invocation.getter(#basicAuth),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#basicAuth),
         ),
@@ -744,7 +770,7 @@ class MockSuggestQuestionService extends _i1.Mock
   @override
   String get acceptedLanguages => (super.noSuchMethod(
         Invocation.getter(#acceptedLanguages),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#acceptedLanguages),
         ),
@@ -762,7 +788,7 @@ class MockSuggestQuestionService extends _i1.Mock
   @override
   String get platform => (super.noSuchMethod(
         Invocation.getter(#platform),
-        returnValue: _i15.dummyValue<String>(
+        returnValue: _i17.dummyValue<String>(
           this,
           Invocation.getter(#platform),
         ),
@@ -780,7 +806,7 @@ class MockSuggestQuestionService extends _i1.Mock
   @override
   _i3.Future<_i10.SuggestQuestionModel> getSuggestQuestionData(
     String? question,
-    List<_i19.TextEditingController>? textControllers,
+    List<_i21.TextEditingController>? textControllers,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -850,7 +876,7 @@ class MockStartupServices extends _i1.Mock implements _i12.StartupServices {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockOnBoardingRepository extends _i1.Mock
-    implements _i20.OnBoardingRepository {
+    implements _i22.OnBoardingRepository {
   MockOnBoardingRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -880,10 +906,85 @@ class MockOnBoardingRepository extends _i1.Mock
       ) as _i3.Future<_i11.StartupModel>);
 }
 
+/// A class which mocks [HomeServices].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHomeServices extends _i1.Mock implements _i14.HomeServices {
+  MockHomeServices() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.ApiHelper get apiHelper => (super.noSuchMethod(
+        Invocation.getter(#apiHelper),
+        returnValue: _FakeApiHelper_5(
+          this,
+          Invocation.getter(#apiHelper),
+        ),
+      ) as _i7.ApiHelper);
+
+  @override
+  set apiHelper(_i7.ApiHelper? _apiHelper) => super.noSuchMethod(
+        Invocation.setter(
+          #apiHelper,
+          _apiHelper,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.Future<_i13.HomeModel> FetchHomeList() => (super.noSuchMethod(
+        Invocation.method(
+          #FetchHomeList,
+          [],
+        ),
+        returnValue: _i3.Future<_i13.HomeModel>.value(_FakeHomeModel_12(
+          this,
+          Invocation.method(
+            #FetchHomeList,
+            [],
+          ),
+        )),
+      ) as _i3.Future<_i13.HomeModel>);
+}
+
+/// A class which mocks [HomeRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHomeRepository extends _i1.Mock implements _i23.HomeRepository {
+  MockHomeRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i14.HomeServices get homeServices => (super.noSuchMethod(
+        Invocation.getter(#homeServices),
+        returnValue: _FakeHomeServices_13(
+          this,
+          Invocation.getter(#homeServices),
+        ),
+      ) as _i14.HomeServices);
+
+  @override
+  _i3.Future<_i13.HomeModel> fetchHomeData() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchHomeData,
+          [],
+        ),
+        returnValue: _i3.Future<_i13.HomeModel>.value(_FakeHomeModel_12(
+          this,
+          Invocation.method(
+            #fetchHomeData,
+            [],
+          ),
+        )),
+      ) as _i3.Future<_i13.HomeModel>);
+}
+
 /// A class which mocks [Result].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResult extends _i1.Mock implements _i21.Result {
+class MockResult extends _i1.Mock implements _i24.Result {
   MockResult() {
     _i1.throwOnMissingStub(this);
   }
@@ -1018,13 +1119,13 @@ class MockResult extends _i1.Mock implements _i21.Result {
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpClient extends _i1.Mock implements _i13.Client {
+class MockHttpClient extends _i1.Mock implements _i15.Client {
   MockHttpClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i13.Response> head(
+  _i3.Future<_i15.Response> head(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -1034,7 +1135,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<_i13.Response>.value(_FakeResponse_12(
+        returnValue: _i3.Future<_i15.Response>.value(_FakeResponse_14(
           this,
           Invocation.method(
             #head,
@@ -1042,10 +1143,10 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i3.Future<_i13.Response>);
+      ) as _i3.Future<_i15.Response>);
 
   @override
-  _i3.Future<_i13.Response> get(
+  _i3.Future<_i15.Response> get(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -1055,7 +1156,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<_i13.Response>.value(_FakeResponse_12(
+        returnValue: _i3.Future<_i15.Response>.value(_FakeResponse_14(
           this,
           Invocation.method(
             #get,
@@ -1063,14 +1164,14 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i3.Future<_i13.Response>);
+      ) as _i3.Future<_i15.Response>);
 
   @override
-  _i3.Future<_i13.Response> post(
+  _i3.Future<_i15.Response> post(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i22.Encoding? encoding,
+    _i25.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1082,7 +1183,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i13.Response>.value(_FakeResponse_12(
+        returnValue: _i3.Future<_i15.Response>.value(_FakeResponse_14(
           this,
           Invocation.method(
             #post,
@@ -1094,14 +1195,14 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i13.Response>);
+      ) as _i3.Future<_i15.Response>);
 
   @override
-  _i3.Future<_i13.Response> put(
+  _i3.Future<_i15.Response> put(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i22.Encoding? encoding,
+    _i25.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1113,7 +1214,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i13.Response>.value(_FakeResponse_12(
+        returnValue: _i3.Future<_i15.Response>.value(_FakeResponse_14(
           this,
           Invocation.method(
             #put,
@@ -1125,14 +1226,14 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i13.Response>);
+      ) as _i3.Future<_i15.Response>);
 
   @override
-  _i3.Future<_i13.Response> patch(
+  _i3.Future<_i15.Response> patch(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i22.Encoding? encoding,
+    _i25.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1144,7 +1245,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i13.Response>.value(_FakeResponse_12(
+        returnValue: _i3.Future<_i15.Response>.value(_FakeResponse_14(
           this,
           Invocation.method(
             #patch,
@@ -1156,14 +1257,14 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i13.Response>);
+      ) as _i3.Future<_i15.Response>);
 
   @override
-  _i3.Future<_i13.Response> delete(
+  _i3.Future<_i15.Response> delete(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i22.Encoding? encoding,
+    _i25.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1175,7 +1276,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i3.Future<_i13.Response>.value(_FakeResponse_12(
+        returnValue: _i3.Future<_i15.Response>.value(_FakeResponse_14(
           this,
           Invocation.method(
             #delete,
@@ -1187,7 +1288,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
             },
           ),
         )),
-      ) as _i3.Future<_i13.Response>);
+      ) as _i3.Future<_i15.Response>);
 
   @override
   _i3.Future<String> read(
@@ -1200,7 +1301,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<String>.value(_i15.dummyValue<String>(
+        returnValue: _i3.Future<String>.value(_i17.dummyValue<String>(
           this,
           Invocation.method(
             #read,
@@ -1211,7 +1312,7 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
       ) as _i3.Future<String>);
 
   @override
-  _i3.Future<_i23.Uint8List> readBytes(
+  _i3.Future<_i26.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -1221,25 +1322,25 @@ class MockHttpClient extends _i1.Mock implements _i13.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i3.Future<_i23.Uint8List>.value(_i23.Uint8List(0)),
-      ) as _i3.Future<_i23.Uint8List>);
+        returnValue: _i3.Future<_i26.Uint8List>.value(_i26.Uint8List(0)),
+      ) as _i3.Future<_i26.Uint8List>);
 
   @override
-  _i3.Future<_i13.StreamedResponse> send(_i13.BaseRequest? request) =>
+  _i3.Future<_i15.StreamedResponse> send(_i15.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
           [request],
         ),
         returnValue:
-            _i3.Future<_i13.StreamedResponse>.value(_FakeStreamedResponse_13(
+            _i3.Future<_i15.StreamedResponse>.value(_FakeStreamedResponse_15(
           this,
           Invocation.method(
             #send,
             [request],
           ),
         )),
-      ) as _i3.Future<_i13.StreamedResponse>);
+      ) as _i3.Future<_i15.StreamedResponse>);
 
   @override
   void close() => super.noSuchMethod(

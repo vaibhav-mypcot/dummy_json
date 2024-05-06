@@ -2,7 +2,9 @@ import 'package:dummy_json/core/routes/app_routes.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
 import 'package:dummy_json/feature/home/presentation/localization_bloc/localization_bloc.dart';
 import 'package:dummy_json/feature/home/presentation/theme_bloc/theme_block.dart';
+import 'package:dummy_json/feature/home_collection/presentation/bloc/home_bloc.dart';
 import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
+import 'package:dummy_json/feature/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
 import 'package:dummy_json/feature/suggest_question/prsentation/bloc/suggest_question_bloc.dart';
 import 'package:dummy_json/feature/users/presentation/bloc/user_bloc.dart';
@@ -65,6 +67,9 @@ void main() async {
         BlocProvider<SuggestQuestionBloc>(
             create: (_) => serviceLocator<SuggestQuestionBloc>()),
         BlocProvider<UserBloc>(create: (_) => serviceLocator<UserBloc>()),
+        BlocProvider<OnBoardingBloc>(
+            create: (_) => serviceLocator<OnBoardingBloc>()),
+        BlocProvider<HomeBloc>(create: (_) => serviceLocator<HomeBloc>()),
       ],
       child: MyApp(),
     ),

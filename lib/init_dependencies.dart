@@ -2,7 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:dummy_json/feature/address/data/repository/profile_repository.dart';
 import 'package:dummy_json/feature/address/data/services/profile_service.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
+import 'package:dummy_json/feature/common_cubit/network/cubit/internet_cubit.dart';
+import 'package:dummy_json/feature/home_collection/data/repositories/home_repository.dart';
+import 'package:dummy_json/feature/home_collection/data/services/home_services.dart';
+import 'package:dummy_json/feature/home_collection/presentation/bloc/home_bloc.dart';
 import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
+import 'package:dummy_json/feature/onboarding/data/repository/startup_repository.dart';
+import 'package:dummy_json/feature/onboarding/data/services/startup_services.dart';
+import 'package:dummy_json/feature/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'package:dummy_json/feature/products/data/repository/product_repository.dart';
 import 'package:dummy_json/feature/products/data/services/product_service.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
@@ -23,8 +30,11 @@ Future<void> initDependencies() async {
   _initProfile();
   _initSuggestQuestions();
   _initUsers();
+  _initOnboarding();
+  _initHome();
 
   serviceLocator.registerLazySingleton(() => NetworkBloc());
+  serviceLocator.registerLazySingleton(() => InternetCubit());
 }
 
 // --
@@ -97,4 +107,32 @@ void _initUsers() {
     // Bloc
     ..registerLazySingleton<UserBloc>(
         () => UserBloc(userRepository: serviceLocator()));
+}
+
+// /// -- onboarding
+void _initOnboarding() {
+  serviceLocator
+    // services
+    ..registerLazySingleton<StartupServices>(() => StartupServices())
+
+    // repo
+    ..registerFactory<OnBoardingRepository>(
+        () => OnBoardingRepository(serviceLocator()))
+    // Bloc
+    ..registerLazySingleton<OnBoardingBloc>(
+        () => OnBoardingBloc(onBoardingRepository: serviceLocator()));
+}
+
+//-- HomeCollections
+void _initHome() {
+  serviceLocator
+    //services
+    ..registerLazySingleton<HomeServices>(() => HomeServices())
+
+    // repo
+    ..registerFactory<HomeRepository>(() => HomeRepository(serviceLocator()))
+
+    //bloc
+    ..registerLazySingleton<HomeBloc>(
+        () => HomeBloc(homeRepository: serviceLocator()));
 }

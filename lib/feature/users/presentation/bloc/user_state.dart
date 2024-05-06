@@ -4,7 +4,7 @@ abstract class UserState {}
 
 class UserInitialState extends UserState {}
 
-class ShowUserDataState extends UserState{
+class ShowUserDataState extends UserState {
   final List<User> user;
   ShowUserDataState(this.user);
 }

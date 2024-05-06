@@ -212,7 +212,7 @@ class _ApiClient implements ApiClient {
 
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
-  
+
   @override
   // TODO: implement header
   Future<Map<String, dynamic>>? get header => throw UnimplementedError();

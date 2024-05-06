@@ -1,5 +1,3 @@
-
-
 class Bank {
   String? cardExpire;
   String? cardNumber;

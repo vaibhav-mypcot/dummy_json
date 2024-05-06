@@ -46,7 +46,7 @@ dependencies:
   package_info_plus: ^8.0.0
   dio: ^5.4.3+1
   flutter_dotenv: ^5.1.0
-  connectivity_plus: ^6.0.2
+  connectivity_plus: ^6.0.3
   intl: ^0.18.1
   flutter_localizations:
     sdk: flutter
@@ -55,6 +55,15 @@ dependencies:
   retrofit: ^4.1.0
   built_value: ^8.9.2
   json_annotation: ^4.9.0
+  lottie: ^2.7.0
+  flutter_native_splash: ^2.4.0
+  flutter_svg: ^2.0.10+1
+  smooth_page_indicator: ^1.1.0
+  internet_connection_checker: ^1.0.0+1
+  fluttertoast: ^8.2.5
+  shimmer: ^3.0.0
+  toast: ^0.3.0
+  carousel_slider: ^4.2.1
   
 dev_dependencies:
   flutter_test:
@@ -75,6 +84,12 @@ dev_dependencies:
   json_serializable: ^6.8.0
   built_value_generator: ^8.9.2
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/app_icon.png"
+  adaptive_icon_background: "assets/logo/app_icon.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -87,9 +102,33 @@ flutter:
   uses-material-design: true
   generate: true
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/logo/
+    - assets/splash/
+    - assets/icons/
+    - assets/icons/drawer_ic/
+    - assets/icons/general/
+    - assets/icons/home/
+    - assets/icons/quiz_details/
+    - assets/icons/quiz_result/
+    - assets/icons/upcoming_contest/
+    - assets/icons/contact_us/
+    - assets/icons/enrolled_contest/
+    - assets/images/
+    - assets/images/drawer/
+    - assets/images/onboarding/
+    - assets/images/submitted/
+    - assets/images/failed/
+    - assets/images/quiz_result/
+    - assets/images/enrolled_contest/
+    - assets/images/quiz/
+    - assets/images/login/
+    - assets/images/home/
+    - assets/images/upcoming_contest_details/
+    - assets/icons/notification_listing/
+    - assets/lottie_files/
+    - assets/images/empty_state/
+    - assets/icons/suggest_question/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -116,5 +155,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  color: "#000000"
+  android_12:
+    color: "#000000"
+
 flutter_intl:
   enabled: true
+
+  

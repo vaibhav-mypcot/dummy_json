@@ -13,16 +13,16 @@ class SuggestQuestionModel extends AbstractModel with EquatableMixin {
     this.data,
   });
 
-    // factory SuggestQuestionModel.fromJson(Map<String, dynamic> json) =>
-    //   SuggestQuestionModel(
-    //     success: json['success'] as int?,
-    //     message: (json['message'] as List<dynamic>?)
-    //         ?.map<String>((e) => e as String)
-    //         .toList(),
-    //     data: json['data'] == null
-    //         ? null
-    //         : Data.fromJson(json['data'] as Map<String, dynamic>),
-    //   );
+  // factory SuggestQuestionModel.fromJson(Map<String, dynamic> json) =>
+  //   SuggestQuestionModel(
+  //     success: json['success'] as int?,
+  //     message: (json['message'] as List<dynamic>?)
+  //         ?.map<String>((e) => e as String)
+  //         .toList(),
+  //     data: json['data'] == null
+  //         ? null
+  //         : Data.fromJson(json['data'] as Map<String, dynamic>),
+  //   );
 
   factory SuggestQuestionModel.fromJson(Map<String, dynamic> json) =>
       SuggestQuestionModel(

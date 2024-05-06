@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:dummy_json/feature/suggest_question/data/services/suggest_question_service.dart';
 import 'package:dummy_json/feature/suggest_question/data/suggest_question_model/data.dart';
 import 'package:dummy_json/feature/suggest_question/data/suggest_question_model/result.dart';
@@ -9,15 +10,16 @@ import 'package:mockito/mockito.dart';
 import '../../../helper/helper_test.mocks.dart';
 
 void main() {
+  final Dio dio = Dio();
   late MockApiHelper mockApiHelper;
-  late MockHeader mockHeader;
+  late MockHeaderClass mockHeader;
   late SuggestQuestionService suggestQuestionService;
   WidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
     mockApiHelper = MockApiHelper();
-    suggestQuestionService = SuggestQuestionService();
-    mockHeader = MockHeader();
+    suggestQuestionService = SuggestQuestionService(dio);
+    mockHeader = MockHeaderClass();
   });
 
   test('get suggest question submit success', () async {

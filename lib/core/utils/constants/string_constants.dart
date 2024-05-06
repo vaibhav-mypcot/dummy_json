@@ -12,4 +12,5 @@ class StringConstants {
   static const String pincodeApiURL = "https://api.postalpincode.in/";
 
   static const String pincode = 'pincode';
+  static const String startupApi = 'startup_api';
 }

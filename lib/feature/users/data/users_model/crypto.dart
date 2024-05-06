@@ -1,4 +1,3 @@
-
 class Crypto {
   String? coin;
   String? wallet;
