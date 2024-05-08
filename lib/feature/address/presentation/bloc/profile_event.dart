@@ -8,6 +8,12 @@ class FetchProfileDataEvent extends ProfileEvent {
   List<Object?> get props => throw UnimplementedError();
 }
 
+class FetchStartupDataEvent extends ProfileEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+
 class UserAddressUpdateEvent extends ProfileEvent {
   final String name;
   final String address;

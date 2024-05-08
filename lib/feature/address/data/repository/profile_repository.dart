@@ -8,7 +8,7 @@ class ProfileRepository {
 
   Future<ProfileModel> fetchProfileData() async {
     try {
-      final profile = await profileServices.getProfile();
+      final profile = await profileServices.getProfileData();
       return profile;
     } catch (e) {
       throw Exception('Failed to fetch profile data: $e');

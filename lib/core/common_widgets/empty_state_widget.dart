@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toast/toast.dart';
 
-
 // ignore: must_be_immutable
 class EmptyStateWidget extends StatelessWidget {
   final String title;
@@ -61,8 +60,7 @@ class EmptyStateWidget extends StatelessWidget {
                       padding: EdgeInsets.only(top: 25.h, bottom: 13.h),
                       child: Text(
                         title,
-                        style: TextStyle(
-                            fontSize: 16.sp, color: kColorWhite),
+                        style: TextStyle(fontSize: 16.sp, color: kColorWhite),
                       ),
                     ),
                     Padding(
@@ -97,8 +95,7 @@ class EmptyStateWidget extends StatelessWidget {
                     padding: EdgeInsets.only(top: 25.h, bottom: 13.h),
                     child: Text(
                       title,
-                      style: TextStyle(
-                          fontSize: 16.sp, color: kColorWhite),
+                      style: TextStyle(fontSize: 16.sp, color: kColorWhite),
                     ),
                   ),
                   Padding(

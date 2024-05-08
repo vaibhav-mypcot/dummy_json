@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dummy_json/core/common/customTextField.dart';
-import 'package:dummy_json/core/common/custom_long_btn.dart';
-import 'package:dummy_json/core/common/toast.dart';
+import 'package:dummy_json/core/common_widgets/customTextField.dart';
+import 'package:dummy_json/core/common_widgets/custom_long_btn.dart';
+import 'package:dummy_json/core/common_widgets/toast.dart';
 import 'package:dummy_json/core/routes/app_routes.gr.dart';
 import 'package:dummy_json/core/utils/constants/colors_constants.dart';
 import 'package:dummy_json/core/utils/validation/validation_mixin.dart';

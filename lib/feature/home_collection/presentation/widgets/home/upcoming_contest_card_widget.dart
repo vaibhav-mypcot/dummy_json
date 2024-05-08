@@ -35,8 +35,8 @@ class UpcomingContestCardWidget extends StatelessWidget {
         color: kColorCardBg,
         borderRadius: BorderRadius.circular(8.r),
         boxShadow: const [
-           BoxShadow(
-            color:  Color(0xFF272931),
+          BoxShadow(
+            color: Color(0xFF272931),
             offset: Offset(0, 6.0),
             blurRadius: 3.0,
             blurStyle: BlurStyle.inner,

@@ -531,15 +531,33 @@ class MockProfileServices extends _i1.Mock implements _i4.ProfileServices {
       );
 
   @override
-  _i3.Future<_i5.ProfileModel> getProfile() => (super.noSuchMethod(
+  String get token => (super.noSuchMethod(
+        Invocation.getter(#token),
+        returnValue: _i17.dummyValue<String>(
+          this,
+          Invocation.getter(#token),
+        ),
+      ) as String);
+
+  @override
+  set token(String? _token) => super.noSuchMethod(
+        Invocation.setter(
+          #token,
+          _token,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.Future<_i5.ProfileModel> getProfileData() => (super.noSuchMethod(
         Invocation.method(
-          #getProfile,
+          #getProfileData,
           [],
         ),
         returnValue: _i3.Future<_i5.ProfileModel>.value(_FakeProfileModel_3(
           this,
           Invocation.method(
-            #getProfile,
+            #getProfileData,
             [],
           ),
         )),
@@ -933,15 +951,15 @@ class MockHomeServices extends _i1.Mock implements _i14.HomeServices {
       );
 
   @override
-  _i3.Future<_i13.HomeModel> FetchHomeList() => (super.noSuchMethod(
+  _i3.Future<_i13.HomeModel> fetchHomeList() => (super.noSuchMethod(
         Invocation.method(
-          #FetchHomeList,
+          #fetchHomeList,
           [],
         ),
         returnValue: _i3.Future<_i13.HomeModel>.value(_FakeHomeModel_12(
           this,
           Invocation.method(
-            #FetchHomeList,
+            #fetchHomeList,
             [],
           ),
         )),

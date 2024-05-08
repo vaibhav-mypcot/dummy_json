@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dummy_json/core/common/no_internet_screen.dart';
+import 'package:dummy_json/core/common_widgets/no_internet_screen.dart';
 import 'package:dummy_json/core/routes/app_routes.gr.dart';
 import 'package:dummy_json/core/utils/constants/colors_constants.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';

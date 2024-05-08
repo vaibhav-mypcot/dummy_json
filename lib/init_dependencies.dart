@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:dummy_json/core/services/network/connectivity_bloc/connectivity_bloc.dart';
 import 'package:dummy_json/feature/address/data/repository/profile_repository.dart';
 import 'package:dummy_json/feature/address/data/services/profile_service.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
+import 'package:dummy_json/feature/auth/data/repository/auth_repository.dart';
+import 'package:dummy_json/feature/auth/data/services/auth_services.dart';
+import 'package:dummy_json/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dummy_json/feature/common_cubit/network/cubit/internet_cubit.dart';
 import 'package:dummy_json/feature/home_collection/data/repositories/home_repository.dart';
 import 'package:dummy_json/feature/home_collection/data/services/home_services.dart';
@@ -10,6 +14,9 @@ import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
 import 'package:dummy_json/feature/onboarding/data/repository/startup_repository.dart';
 import 'package:dummy_json/feature/onboarding/data/services/startup_services.dart';
 import 'package:dummy_json/feature/onboarding/presentation/bloc/onboarding_bloc.dart';
+import 'package:dummy_json/feature/otp/data/repository/validate_otp_repository.dart';
+import 'package:dummy_json/feature/otp/data/services/validate_otp_service.dart';
+import 'package:dummy_json/feature/otp/presentation/bloc/otp_bloc.dart';
 import 'package:dummy_json/feature/products/data/repository/product_repository.dart';
 import 'package:dummy_json/feature/products/data/services/product_service.dart';
 import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart';
@@ -32,9 +39,12 @@ Future<void> initDependencies() async {
   _initUsers();
   _initOnboarding();
   _initHome();
+  _initAuth();
+  _initOtp();
 
   serviceLocator.registerLazySingleton(() => NetworkBloc());
   serviceLocator.registerLazySingleton(() => InternetCubit());
+  serviceLocator.registerLazySingleton(() => ConnectivityBloc());
 }
 
 // --
@@ -74,6 +84,7 @@ void _initProfile() {
     ..registerLazySingleton<ProfileBloc>(
       () => ProfileBloc(
         profileRepository: serviceLocator(),
+        onBoardingBloc: serviceLocator(),
       ),
     );
 }
@@ -133,6 +144,36 @@ void _initHome() {
     ..registerFactory<HomeRepository>(() => HomeRepository(serviceLocator()))
 
     //bloc
-    ..registerLazySingleton<HomeBloc>(
-        () => HomeBloc(homeRepository: serviceLocator()));
+    ..registerLazySingleton<HomeBloc>(() => HomeBloc(
+        homeRepository: serviceLocator(), connectivityBloc: serviceLocator()));
+}
+
+//-- Auth
+
+void _initAuth() {
+  serviceLocator
+    // services
+    ..registerLazySingleton<AuthServices>(() => AuthServices())
+
+    // Repo
+    ..registerFactory<AuthRepository>(() => AuthRepository(serviceLocator()))
+
+    // bloc
+    ..registerLazySingleton<AuthBloc>(
+        () => AuthBloc(authRepository: serviceLocator()));
+}
+
+//-- Otp
+void _initOtp() {
+  serviceLocator
+    // services
+    ..registerLazySingleton<ValidateOtpService>(() => ValidateOtpService())
+
+    //repo
+    ..registerFactory<ValidateOtpRepository>(
+        () => ValidateOtpRepository(serviceLocator()))
+
+    //bloc
+    ..registerLazySingleton<OtpBloc>(
+        () => OtpBloc(validateOtpRepository: serviceLocator()));
 }

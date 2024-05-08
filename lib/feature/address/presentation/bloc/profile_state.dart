@@ -1,5 +1,6 @@
 import 'package:dummy_json/feature/address/data/model/pincode_model.dart';
 import 'package:dummy_json/feature/address/data/profile_model/result.dart';
+import 'package:dummy_json/feature/onboarding/data/startup_model/data.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ProfileState extends Equatable {}
@@ -20,7 +21,9 @@ class ProfileLoadingState extends ProfileState {
 
 class ProfileLoadedState extends ProfileState {
   final Result? result;
-  ProfileLoadedState(this.result);
+  final int success;
+  final Data data;
+  ProfileLoadedState(this.result, this.success, this.data);
 
   @override
   // TODO: implement props
@@ -38,7 +41,8 @@ class ProfileErrorState extends ProfileState {
 
 class UserAddressUpdate extends ProfileState {
   final Result result;
-  UserAddressUpdate(this.result);
+
+  UserAddressUpdate(this.result, );
 
   @override
   // TODO: implement props
@@ -53,3 +57,12 @@ class PincodeUpdateState extends ProfileState {
   // TODO: implement props
   List<Object?> get props => [postOffice];
 }
+
+// class LoadStartupServiceState extends ProfileState {
+//   final Data result;
+//   LoadStartupServiceState(this.result);
+  
+//   @override
+//   // TODO: implement props
+//   List<Object?> get props => throw UnimplementedError();
+// }

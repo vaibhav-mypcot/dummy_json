@@ -1,6 +1,24 @@
 // ignore_for_file: unnecessary_new
 
 mixin ValidationsMixin {
+  bool isNumericOnly(String value) {
+    final RegExp numericRegex = RegExp(r'^[0-9]+$');
+    return numericRegex.hasMatch(value);
+  }
+
+  String? validatedPhoneNumber(String? value) {
+    if (value == null ||
+        value.length > 10 ||
+        value.isEmpty ||
+        value.length < 10) {
+      return 'Please enter valid phone number';
+    } else if (!isNumericOnly(value)) {
+      return 'Please enter valid phone number';
+    } else {
+      return null;
+    }
+  }
+
   String? validatedName(String? value) {
     if (value == null || value.isEmpty || value.length >= 52) {
       return 'Please enter valid name';

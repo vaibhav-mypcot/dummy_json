@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:dummy_json/core/common/customTextField.dart';
-import 'package:dummy_json/core/common/custom_long_btn.dart';
-import 'package:dummy_json/core/common/no_internet_screen.dart';
+import 'package:dummy_json/core/common_widgets/customTextField.dart';
+import 'package:dummy_json/core/common_widgets/custom_long_btn.dart';
+import 'package:dummy_json/core/common_widgets/no_internet_screen.dart';
 import 'package:dummy_json/core/utils/constants/colors_constants.dart';
 import 'package:dummy_json/core/utils/validation/validation_mixin.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';

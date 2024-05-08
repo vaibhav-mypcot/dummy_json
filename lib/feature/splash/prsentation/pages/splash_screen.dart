@@ -15,6 +15,9 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController _controller;
 
+  String accessToken =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9za3lvbmxpbmVycy5jb21cL2RlbW9cL2RlbW9jcmFjeS1hcGlzXC93ZWJzZXJ2aWNlc1wvdjFcL3ZhbGlkYXRlX290cCIsImlhdCI6MTcwNjg1ODUxMSwiZXhwIjoxNzIyNTgzMzExLCJuYmYiOjE3MDY4NTg1MTEsImp0aSI6IlE4bE5xNkN4Z1pjc0diNngiLCJzdWIiOjczLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-QTKvI5yuhwkYYbe0RQ-LsK2_j8RBNUPAJYAeUD5W2g';
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +50,14 @@ class _SplashScreenState extends State<SplashScreen>
             _controller
               ..duration = composition.duration
               ..forward().whenComplete(() async {
-                AutoRouter.of(context).push(OnBoardingScreenRoute());
+                if (accessToken != null) {
+                  // log("GOING HOME");
+                  context.router.pushAndPopUntil(HomePageRoute(),
+                      predicate: (route) => false);
+                } else {
+                  // log("GOING ONBOARDING");
+                  AutoRouter.of(context).push(const OnBoardingScreenRoute());
+                }
               });
           },
         ),

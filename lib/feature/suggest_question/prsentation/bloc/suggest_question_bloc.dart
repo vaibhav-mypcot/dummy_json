@@ -1,4 +1,4 @@
-import 'package:dummy_json/core/common/customTextField.dart';
+import 'package:dummy_json/core/common_widgets/customTextField.dart';
 import 'package:dummy_json/feature/suggest_question/data/repository/suggest_question_repository.dart';
 import 'package:dummy_json/feature/suggest_question/prsentation/bloc/suggest_question_event.dart';
 import 'package:dummy_json/feature/suggest_question/prsentation/bloc/suggest_question_state.dart';

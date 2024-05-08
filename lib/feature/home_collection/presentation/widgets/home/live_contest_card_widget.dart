@@ -31,7 +31,7 @@ class LiveContestCardWidget extends StatelessWidget {
         boxShadow: const [
           BoxShadow(
             color: Color(0xFF272931),
-            offset:  Offset(0, 6.0),
+            offset: Offset(0, 6.0),
             blurRadius: 3.0,
             blurStyle: BlurStyle.inner,
           ),

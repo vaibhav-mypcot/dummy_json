@@ -9,6 +9,10 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [
         /// routes go here
         AutoRoute(page: SplashScreenRoute.page, path: '/'),
+        AutoRoute(page: DrawerMenuScreenRoute.page),
+        AutoRoute(page: SubProfileScreenRoute.page),
+        AutoRoute(page: AuthScreenRoute.page),
+        AutoRoute(page: OtpScreenRoute.page),
         AutoRoute(page: HomePageRoute.page),
         AutoRoute(page: HomeScreenRoute.page),
         AutoRoute(page: OnBoardingScreenRoute.page),

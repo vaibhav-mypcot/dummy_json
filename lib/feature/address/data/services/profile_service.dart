@@ -22,48 +22,51 @@ class ProfileServices {
   String accessToken =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9za3lvbmxpbmVycy5jb21cL2RlbW9cL2RlbW9jcmFjeS1hcGlzXC93ZWJzZXJ2aWNlc1wvdjFcL3ZhbGlkYXRlX290cCIsImlhdCI6MTcwNjg1ODUxMSwiZXhwIjoxNzIyNTgzMzExLCJuYmYiOjE3MDY4NTg1MTEsImp0aSI6IlE4bE5xNkN4Z1pjc0diNngiLCJzdWIiOjczLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-QTKvI5yuhwkYYbe0RQ-LsK2_j8RBNUPAJYAeUD5W2g';
 
-  Future<ProfileModel> getProfile() async {
-    try {
-      final response = await apiClient.getProfileData(
-          basicAuth,
-          acceptedLanguages,
-          accessToken,
-          platform,
-          StringConstants.uuid,
-          '1.0.0',
-          '*/*');
-      print(response.message.toString());
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get users: $e');
-    }
-  }
-
-  // String? token;
-  // String token =
-  //     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9za3lvbmxpbmVycy5jb21cL2RlbW9cL2RlbW9jcmFjeS1hcGlzXC93ZWJzZXJ2aWNlc1wvdjFcL3ZhbGlkYXRlX290cCIsImlhdCI6MTcwNjg1ODUxMSwiZXhwIjoxNzIyNTgzMzExLCJuYmYiOjE3MDY4NTg1MTEsImp0aSI6IlE4bE5xNkN4Z1pjc0diNngiLCJzdWIiOjczLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-QTKvI5yuhwkYYbe0RQ-LsK2_j8RBNUPAJYAeUD5W2g';
-
-  // Future<ProfileModel> getProfileData() async {
+  // Future<ProfileModel> getProfile() async {
   //   try {
-  //     // token = await getToken();
-  //     var header = await Header().getHeaders();
-  //     // var header = await MockHeaderGette().get getHeaders();
-
-  //     final response = await apiHelper.callApi<ProfileModel>(
-  //         endPoint: 'users/me',
-  //         header: header!,
-  //         reqType: 'post',
-  //         fromJsonFunction: ProfileModel.fromJson);
-
-  //     if (response.success == 1) {
-  //       return response;
-  //     } else {
-  //       throw Exception('Failed to load profile: ${response.message}');
-  //     }
+  //     final response = await apiClient.getProfileData(
+  //         basicAuth,
+  //         acceptedLanguages,
+  //         accessToken,
+  //         platform,
+  //         StringConstants.uuid,
+  //         '1.0.0',
+  //         '*/*');
+  //     print(response.message.toString());
+  //     return response;
   //   } catch (e) {
-  //     throw Exception(e.toString());
+  //     throw Exception('Failed to get users: $e');
   //   }
   // }
+
+  // String? token;
+  String token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9za3lvbmxpbmVycy5jb21cL2RlbW9cL2RlbW9jcmFjeS1hcGlzXC93ZWJzZXJ2aWNlc1wvdjFcL3ZhbGlkYXRlX290cCIsImlhdCI6MTcwNjg1ODUxMSwiZXhwIjoxNzIyNTgzMzExLCJuYmYiOjE3MDY4NTg1MTEsImp0aSI6IlE4bE5xNkN4Z1pjc0diNngiLCJzdWIiOjczLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-QTKvI5yuhwkYYbe0RQ-LsK2_j8RBNUPAJYAeUD5W2g';
+
+  Future<ProfileModel> getProfileData() async {
+    try {
+      // token = await getToken();
+      var header = await HeaderClass().getHeaders();
+      // var header = await MockHeaderGette().get getHeaders();
+
+      final response = await apiHelper.callApi<ProfileModel>(
+          endPoint: 'users/me',
+          header: header!,
+          reqType: 'post',
+       
+          fromJsonFunction: ProfileModel.fromJson);
+
+      if (response.success == 1) {
+        return response;
+      } else if (response.success == 4) {
+        return response;
+      } else {
+        throw Exception('Failed to load profile: ${response.message}');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 
   Future<ProfileModel> updateUserAddress(
       String name, String address, String pinCode) async {

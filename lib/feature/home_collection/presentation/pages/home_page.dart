@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:dummy_json/core/common/empty_state_widget.dart';
+import 'package:dummy_json/core/common_widgets/empty_state_widget.dart';
+import 'package:dummy_json/core/routes/app_routes.gr.dart';
 import 'package:dummy_json/core/utils/constants/colors_constants.dart';
 import 'package:dummy_json/core/utils/constants/const.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_bloc.dart';
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<HomeBloc>().add(FetchHomeDataList());
+    // context.read<HomeBloc>().add(FetchHomeDataList());
   }
 
   @override
@@ -124,8 +125,8 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: () {
-                                                      // Get.toNamed(AppRoutes
-                                                      //     .drawerMenuScreen);
+                                                      context.router.push(
+                                                          const DrawerMenuScreenRoute());
                                                     },
                                                     child: SvgPicture.asset(
                                                       'assets/icons/home/drawer.svg',

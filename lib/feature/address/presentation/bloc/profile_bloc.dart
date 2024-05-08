@@ -1,16 +1,23 @@
+import 'dart:async';
+
 import 'package:dummy_json/feature/address/data/repository/profile_repository.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_event.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_state.dart';
+import 'package:dummy_json/feature/onboarding/data/startup_model/startup_model.dart';
+import 'package:dummy_json/feature/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileRepository profileRepository;
+  final OnBoardingBloc onBoardingBloc;
   ProfileBloc({
     required this.profileRepository,
+    required this.onBoardingBloc,
   }) : super(ProfileInitialState()) {
     on<FetchProfileDataEvent>(__onFetchAllProfileData);
     on<UserAddressUpdateEvent>(_onUpdateAddress);
     on<FetchPincodeEvent>(_onFetchPincode);
+    // on<FetchStartupDataEvent>(_listenStartupApi);
   }
 
   void __onFetchAllProfileData(
@@ -19,10 +26,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       if (state is ProfileLoadingState) return;
 
       final profile = await profileRepository.fetchProfileData();
-
+      final success = profile.success;
       final result = profile.data?.result;
 
-      emit(ProfileLoadedState(result!));
+      final startupServices = await onBoardingBloc
+          .onBoardingRepository.startupServices
+          .fetchStartup();
+      final startupData = startupServices.data;
+
+      emit(ProfileLoadedState(result!, success!, startupData!));
     } catch (error) {
       emit(ProfileErrorState(error.toString()));
     }

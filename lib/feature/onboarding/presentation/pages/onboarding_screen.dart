@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dummy_json/core/common/no_internet_screen.dart';
+import 'package:dummy_json/core/common_widgets/no_internet_screen.dart';
 import 'package:dummy_json/core/routes/app_routes.gr.dart';
 import 'package:dummy_json/core/utils/constants/colors_constants.dart';
 import 'package:dummy_json/feature/network/presentation/bloc/network_bloc.dart';
@@ -16,7 +16,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 @RoutePage()
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({super.key});
+  const OnBoardingScreen({super.key});
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -114,6 +114,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 context
                                     .read<OnBoardingBloc>()
                                     .add(NextButtonClickedEvent(updatedIndex));
+
+                                if (updatedIndex == 3) {
+                                  context.router.pushAndPopUntil(
+                                      AuthScreenRoute(),
+                                      predicate: (route) => false);
+                                }
                               },
                               child: Container(
                                 height: 54.h,
@@ -199,7 +205,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       //skip text
                       GestureDetector(
                         onTap: () {
-                          context.router.pushAndPopUntil( HomePageRoute(),
+                          context.router.pushAndPopUntil(HomePageRoute(),
                               predicate: (route) => false);
                         },
                         child: Text("Skip",
