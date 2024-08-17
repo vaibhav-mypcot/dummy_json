@@ -1,13 +1,13 @@
 import 'package:dummy_json/core/services/firebase/firebase_cloud_messaging.dart';
 import 'package:dummy_json/core/services/network/connectivity_bloc/connectivity_bloc.dart';
 import 'package:dummy_json/feature/otp/presentation/bloc/otp_bloc.dart';
+import 'package:dummy_json/feature/terms_policy/presentation/bloc/policy_bloc.dart';
 import 'package:dummy_json/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -108,6 +108,7 @@ void main() async {
         BlocProvider<OtpBloc>(create: (_) => serviceLocator<OtpBloc>()),
         BlocProvider<ConnectivityBloc>(
             create: (_) => serviceLocator<ConnectivityBloc>()),
+        BlocProvider<PolicyBloc>(create: (_) => serviceLocator<PolicyBloc>()),
       ],
       child: MyApp(),
     ),

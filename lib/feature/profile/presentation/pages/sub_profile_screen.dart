@@ -104,7 +104,9 @@ class ProfileHeader extends StatelessWidget {
                             radius: 48.r,
                             backgroundColor: Color(0xff181C28),
                             backgroundImage: FadeInImage.assetNetwork(
-                              image: data!.result!.userImage!,
+                              // image: data!.result!.userImage!,
+                              image:
+                                  'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
                               placeholder: Const().userProfilePic,
                               width: 100.h,
                               height: 100.h,
@@ -126,7 +128,9 @@ class ProfileHeader extends StatelessWidget {
                         color: kBackgroundColor,
                         padding: EdgeInsets.symmetric(horizontal: 10.h),
                         child: Text(
-                          data!.result!.name.toString(),
+                          (data!.result == null)
+                              ? "roy"
+                              : data!.result!.name.toString(),
                           style: TextStyle(
                             fontSize: 24.sp,
                             color: Color(0xffF9F7FF),
@@ -135,7 +139,9 @@ class ProfileHeader extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       Text(
-                        "+${data!.result!.phoneCode!} ${data!.result!.phone!}",
+                        (data!.result == null)
+                            ? "020344455"
+                            : "+${data!.result!.phoneCode!} ${data!.result!.phone!}",
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: Color(0xffBEBEC6),

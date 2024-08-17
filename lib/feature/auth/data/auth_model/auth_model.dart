@@ -2,7 +2,7 @@ import 'package:dummy_json/core/utils/parent_model/abstract_model.dart';
 
 import 'data.dart';
 
-class AuthModel extends AbstractModel{
+class AuthModel extends AbstractModel {
   int? success;
   String? message;
   Data? data;

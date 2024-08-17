@@ -10,13 +10,13 @@ abstract class ProfileState extends Equatable {}
 class ProfileInitialState extends ProfileState {
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class ProfileLoadingState extends ProfileState {
   @override
   // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class ProfileLoadedState extends ProfileState {
@@ -42,7 +42,9 @@ class ProfileErrorState extends ProfileState {
 class UserAddressUpdate extends ProfileState {
   final Result result;
 
-  UserAddressUpdate(this.result, );
+  UserAddressUpdate(
+    this.result,
+  );
 
   @override
   // TODO: implement props
@@ -61,7 +63,7 @@ class PincodeUpdateState extends ProfileState {
 // class LoadStartupServiceState extends ProfileState {
 //   final Data result;
 //   LoadStartupServiceState(this.result);
-  
+
 //   @override
 //   // TODO: implement props
 //   List<Object?> get props => throw UnimplementedError();

@@ -7,11 +7,10 @@ class SubProfileBloc extends Bloc<SubProfileEvent, SubProfileState> {
   final ProfileBloc profileBloc;
   SubProfileBloc({required this.profileBloc})
       : super(SubProfileInitialState()) {
+    // on<GetUserDataEvent>(_getUserDetails);
+  }
 
-          // on<GetUserDataEvent>(_getUserDetails);
-      }
-
-      // void _getUserDetails(_getUserDetails event, Emitter<SubProfileState> emit) async {
-      //   final data = profileBloc.
-      // }
+  // void _getUserDetails(_getUserDetails event, Emitter<SubProfileState> emit) async {
+  //   final data = profileBloc.
+  // }
 }

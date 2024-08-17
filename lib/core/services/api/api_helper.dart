@@ -18,6 +18,7 @@ class ApiHelper {
     int? page,
     int? limit,
     bool? isShowSnackbar,
+    cancelToken,
     // Map? extraBodyParam,
   }) async {
     log("API URL ${apiUrl.toString()}");

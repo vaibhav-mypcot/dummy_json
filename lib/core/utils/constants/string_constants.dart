@@ -13,4 +13,5 @@ class StringConstants {
 
   static const String pincode = 'pincode';
   static const String startupApi = 'startup_api';
+  static const String policies = 'policies';
 }

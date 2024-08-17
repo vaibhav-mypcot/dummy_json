@@ -53,7 +53,6 @@ class ProfileServices {
           endPoint: 'users/me',
           header: header!,
           reqType: 'post',
-       
           fromJsonFunction: ProfileModel.fromJson);
 
       if (response.success == 1) {
@@ -68,60 +67,60 @@ class ProfileServices {
     }
   }
 
-  Future<ProfileModel> updateUserAddress(
-      String name, String address, String pinCode) async {
-    final Map<String, dynamic> requestBody = {
-      "name": name,
-      "address": address,
-      "pin_code": pinCode,
-      "state_name": 'maharashtra',
-      "city_name": 'mumbai',
-    };
-    try {
-      final response = await apiClient.updateAddressData(
-          basicAuth,
-          acceptedLanguages,
-          accessToken,
-          platform,
-          StringConstants.uuid,
-          '1.0.0',
-          '*/*',
-          requestBody);
-      print(response.message.toString());
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get users: $e');
-    }
-  }
-
   // Future<ProfileModel> updateUserAddress(
   //     String name, String address, String pinCode) async {
+  //   final Map<String, dynamic> requestBody = {
+  //     "name": name,
+  //     "address": address,
+  //     "pin_code": pinCode,
+  //     "state_name": 'maharashtra',
+  //     "city_name": 'mumbai',
+  //   };
   //   try {
-  //     // token = await getToken();
-  //     var header = await HeaderClass().getHeaders();
-
-  // final response = await apiHelper.callApi<ProfileModel>(
-  //     endPoint: 'users/address/update',
-  //     header: header!,
-  //     reqType: 'post',
-  //     body: {
-  //       "name": name,
-  //       "address": address,
-  //       "pin_code": pinCode,
-  //       "state_name": 'maharashtra',
-  //       "city_name": 'mumbai',
-  //     },
-  //     fromJsonFunction: ProfileModel.fromJson);
-
-  //     if (response.success == 1) {
-  //       return response;
-  //     } else {
-  //       throw Exception('Failed to load profile: ${response.message}');
-  //     }
+  //     final response = await apiClient.updateAddressData(
+  //         basicAuth,
+  //         acceptedLanguages,
+  //         accessToken,
+  //         platform,
+  //         StringConstants.uuid,
+  //         '1.0.0',
+  //         '*/*',
+  //         requestBody);
+  //     print(response.message.toString());
+  //     return response;
   //   } catch (e) {
-  //     throw Exception(e.toString());
+  //     throw Exception('Failed to get users: $e');
   //   }
   // }
+
+  Future<ProfileModel> updateUserAddress(
+      String name, String address, String pinCode) async {
+    try {
+      // token = await getToken();
+      var header = await HeaderClass().getHeaders();
+
+      final response = await apiHelper.callApi<ProfileModel>(
+          endPoint: 'users/address/update',
+          header: header!,
+          reqType: 'post',
+          body: {
+            "name": name,
+            "address": address,
+            "pin_code": pinCode,
+            "state_name": 'maharashtra',
+            "city_name": 'mumbai',
+          },
+          fromJsonFunction: ProfileModel.fromJson);
+
+      if (response.success == 1) {
+        return response;
+      } else {
+        throw Exception('Failed to load profile: ${response.message}');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 
   Future<PincodeModel> getPincode(String pincode) async {
     try {

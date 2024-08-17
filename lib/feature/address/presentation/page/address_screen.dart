@@ -93,15 +93,18 @@ class _AddressCardState extends State<AddressCard> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
-      if (updatedData != null && updatedData == 'updatedData') {
-        if (!isCall) {
-          context.read<ProfileBloc>().add(FetchProfileDataEvent());
-          isCall = true;
-        }
-      }
+      // if (updatedData != null && updatedData == 'updatedData') {
+      //   if (!isCall) {
+      //     context.read<ProfileBloc>().add(FetchProfileDataEvent());
+      //     isCall = true;
+      //   }
+      // } else
+
       if (state is ProfileLoadingState) {
         return const Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: Colors.green,
+          ),
         );
       } else if (state is ProfileLoadedState) {
         return Container(

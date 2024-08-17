@@ -1,4 +1,3 @@
-abstract class SubProfileEvent{}
+abstract class SubProfileEvent {}
 
-class GetUserDataEvent extends SubProfileEvent{}
-
+class GetUserDataEvent extends SubProfileEvent {}

@@ -23,6 +23,9 @@ import 'package:dummy_json/feature/products/presentation/bloc/product_bloc.dart'
 import 'package:dummy_json/feature/suggest_question/data/repository/suggest_question_repository.dart';
 import 'package:dummy_json/feature/suggest_question/data/services/suggest_question_service.dart';
 import 'package:dummy_json/feature/suggest_question/prsentation/bloc/suggest_question_bloc.dart';
+import 'package:dummy_json/feature/terms_policy/data/repository/policy_repository.dart';
+import 'package:dummy_json/feature/terms_policy/data/service/policy_service.dart';
+import 'package:dummy_json/feature/terms_policy/presentation/bloc/policy_bloc.dart';
 import 'package:dummy_json/feature/users/data/repository/user_repository.dart';
 import 'package:dummy_json/feature/users/presentation/bloc/user_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -41,6 +44,7 @@ Future<void> initDependencies() async {
   _initHome();
   _initAuth();
   _initOtp();
+  _initPolicy();
 
   serviceLocator.registerLazySingleton(() => NetworkBloc());
   serviceLocator.registerLazySingleton(() => InternetCubit());
@@ -176,4 +180,20 @@ void _initOtp() {
     //bloc
     ..registerLazySingleton<OtpBloc>(
         () => OtpBloc(validateOtpRepository: serviceLocator()));
+}
+
+//-- Policy
+void _initPolicy() {
+  serviceLocator
+    // services
+    ..registerLazySingleton<PolicyService>(
+        () => PolicyService(serviceLocator()))
+
+    // repo
+    ..registerFactory<PolicyRepository>(
+        () => PolicyRepository(serviceLocator()))
+
+    //bloc
+    ..registerLazySingleton<PolicyBloc>(
+        () => PolicyBloc(policyRepository: serviceLocator()));
 }

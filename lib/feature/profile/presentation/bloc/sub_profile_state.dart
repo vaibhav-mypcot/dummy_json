@@ -1,3 +1,3 @@
 abstract class SubProfileState {}
 
-class SubProfileInitialState extends SubProfileState{} 
+class SubProfileInitialState extends SubProfileState {}

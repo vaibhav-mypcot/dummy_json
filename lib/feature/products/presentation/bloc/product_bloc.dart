@@ -11,6 +11,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   int limit = 20;
   // final ProductServices _productServices = ProductServices();
   final ProductRepository productRepository;
+  final String green = '\x1B[32m';
 
   ProductBloc({required this.productRepository}) : super(ProductInitial()) {
     on<FetchProductDataEvent>(_onFetchAllProductData);
@@ -19,6 +20,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       FetchProductDataEvent event, Emitter<ProductState> emit) async {
     try {
       if (state is ProductLoading) return;
+      print('$green Product in loading state');
 
       final currentState = state;
 

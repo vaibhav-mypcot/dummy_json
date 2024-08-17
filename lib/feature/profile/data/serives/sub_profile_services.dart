@@ -1,3 +1,1 @@
-class SubProfileServices {
-  
-}
+class SubProfileServices {}

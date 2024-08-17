@@ -16,8 +16,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
       final verifyOtpStatus =
           await validateOtpRepository.validateOTP(event.phoneNumber, event.otp);
 
-        emit(VerifySuccessState(verifyOtpStatus.success!));
-      
+      emit(VerifySuccessState(verifyOtpStatus.success!));
     } catch (e) {
       emit(VerifyErrorState(e.toString()));
     }

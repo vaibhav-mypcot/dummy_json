@@ -6,7 +6,7 @@ class Product extends Equatable {
   final int? id;
   final String? title;
   final String? description;
-  final int? price;
+  final double? price;
   final double? discountPercentage;
   final double? rating;
   final int? stock;
@@ -33,7 +33,7 @@ class Product extends Equatable {
         id: data['id'] as int?,
         title: data['title'] as String?,
         description: data['description'] as String?,
-        price: data['price'] as int?,
+        price: data['price'] as double?,
         discountPercentage: (data['discountPercentage'] as num?)?.toDouble(),
         rating: (data['rating'] as num?)?.toDouble(),
         stock: data['stock'] as int?,

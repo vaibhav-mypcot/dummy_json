@@ -1,6 +1,6 @@
 abstract class OtpState {}
 
-class OtpInitialState extends OtpState{}
+class OtpInitialState extends OtpState {}
 
 class VerifyLoadingState extends OtpState {}
 

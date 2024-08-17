@@ -1,15 +1,13 @@
-import 'dart:async';
-
 import 'package:dummy_json/feature/address/data/repository/profile_repository.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_event.dart';
 import 'package:dummy_json/feature/address/presentation/bloc/profile_state.dart';
-import 'package:dummy_json/feature/onboarding/data/startup_model/startup_model.dart';
 import 'package:dummy_json/feature/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileRepository profileRepository;
   final OnBoardingBloc onBoardingBloc;
+  final String green = '\x1B[32m';
   ProfileBloc({
     required this.profileRepository,
     required this.onBoardingBloc,
@@ -24,6 +22,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       FetchProfileDataEvent event, Emitter<ProfileState> emit) async {
     try {
       if (state is ProfileLoadingState) return;
+      print('$green Data is loading state');
 
       final profile = await profileRepository.fetchProfileData();
       final success = profile.success;
